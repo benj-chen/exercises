@@ -1,3 +1,4 @@
+# https://cses.fi/problemset/task/1094
 n=int(input())
 e=list(map(int,input().split()))
 r=0

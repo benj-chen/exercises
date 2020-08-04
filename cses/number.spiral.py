@@ -1,3 +1,4 @@
+# https://cses.fi/problemset/task/1071
 n=int(input())
 ins=[list(map(int,input().split())) for x in range(n)]
 for z in ins:

@@ -1,3 +1,4 @@
+# https://cses.fi/problemset/task/1092
 i=int(input())
 l=list(range(1,i+1))
 l1=[]

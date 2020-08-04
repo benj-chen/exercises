@@ -1,3 +1,4 @@
+# https://cses.fi/problemset/task/1618
 #from internet
 c=0
 n=int(input())
@@ -8,7 +9,7 @@ while n / i > 0:
 
 print(c)
 """
-mine is too slow for 3 cases
+# mine is too slow for 3 cases
 n=int(input())+1
 
 e,x,c=list(range(5,n,5)),1,0

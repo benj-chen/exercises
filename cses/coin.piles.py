@@ -1,3 +1,4 @@
+# https://cses.fi/problemset/task/1754
 #readable version
 """
 n=int(input())
@@ -8,6 +9,5 @@ for x in l:
     print("YES")
 """
 #short version:
-l=[list(map(int,x)) for x in [input().split() for x in range(int(input()))]]
-for x in l:
+for x in [list(map(int,x)) for x in [input().split() for x in range(int(input()))]]:
     print("NO" if (sum(x)%3!=0) or (x[0]*2<x[1] or x[1]*2<x[0]) else 'YES')

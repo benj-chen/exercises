@@ -1,3 +1,4 @@
+# https://cses.fi/problemset/task/1072
 n=int(input())
 if n==1:print(0);exit()
 print('0\n6')

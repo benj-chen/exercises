@@ -1,4 +1,4 @@
-# find the longest repetition substring of a string with letters A,C,G, and T
+# https://cses.fi/problemset/task/1069
 Str=input()
 Max=1
 prevmax=1
