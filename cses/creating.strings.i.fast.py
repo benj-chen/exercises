@@ -1,5 +1,6 @@
 # https://cses.fi/problemset/task/1622
 
+# fast (uses recursion)
 def ans(l):
     """
 
