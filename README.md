@@ -9,3 +9,6 @@ The 'cses' directory contains solutions from [cses.fi](https://cses.fi). Solutio
 
 ## EULER.NET
 The 'euler.net' directory has solutions from the 'archives' section at [projecteuler.net](projecteuler.net). They are grouped into 10 problems per Python file. There is no runitme cap and no memory cap.
+
+## ADVENTOFCODE2020
+The 'adventofcode2020' directory features solutions from daily problems from [adventofcode.com/2020](adventofcode.com/2020). There are two problems for each day of the month of December. The daily problems, when strung together, make a complete story revolving around Santa.
