@@ -8,7 +8,7 @@ The 'usacobronze' directory features solutions to past USACO competitions. As th
 The 'cses' directory contains solutions from [cses.fi](https://cses.fi). Solutions have to pass test cases with a runtime limit of 1.00 sec and a memory limit of 512 MB. Files beginning with an asterisk (*) mark the incomplete ones. When running all programs, there is **no prompt for input**, as per the website guidelines. Please read the website attached to each file to learn about the problem and parameters.
 
 ## EULER.NET
-The 'euler.net' directory has solutions from the 'archives' section at [https://projecteuler.net](projecteuler.net). They are grouped into 10 problems per Python file. There is no runitme cap and no memory cap.
+The 'euler.net' directory has solutions from the 'archives' section at [https://projecteuler.net](https://projecteuler.net). They are grouped into 10 problems per Python file. There is no runitme cap and no memory cap.
 
 ## ADVENTOFCODE2020
-The 'adventofcode2020' directory features solutions from daily problems from [https://adventofcode.com/2020](adventofcode.com/2020). There are two problems for each day of the month of December. The daily problems, when strung together, make a complete story revolving around Santa.
+The 'adventofcode2020' directory features solutions from daily problems from [https://adventofcode.com/2020](https://adventofcode.com/2020). There are two problems for each day of the month of December. The daily problems, when strung together, make a complete story revolving around Santa.
