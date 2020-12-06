@@ -37,7 +37,6 @@ for x in inputs:
         if i not in "1234567890abcdef": marker1=True;break
     try: int(x['pid'])
     except: marker2 = True
-    if 'cm' not in x['hgt'] and 'in' not in x['hgt']: continue
 
     if \
     (x['byr']>'2002' or x['byr']<'1920') or \
@@ -45,6 +44,7 @@ for x in inputs:
     (x['eyr']<'2020' or x['eyr']>'2030') or \
     (x['ecl'] not in 'amb blu brn gry grn hzl oth'.split()) or \
     (len(x['pid']) != 9) or \
+    ('cm' not in x['hgt'] and 'in' not in x['hgt']) or \
     ('cm' in x['hgt'] and (x['hgt']<'150cm' or x['hgt']>'193cm')) or \
     ("in" in x['hgt'] and (x['hgt']<'59in' or x['hgt']>"76in")) or \
     (x['hcl'][0]!="#" or len(x['hcl'])!=7) or \
