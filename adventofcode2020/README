@@ -1,8 +1,9 @@
 Each problem has 2 answers. The answer to the first part is enclosed in a comment starting in:
 # Part 1 answer
-followed by the answer, then a colon followed by the command that will reveal the answer when ran.
+followed by the answer, then a newline followed by the command that will reveal the answer when ran.
 For example, if the answer to Part 1 was 100, and to print it required some counter:
-# Part 1 answer 100: print(counter)
+# Part 1 answer 100
+print(counter)
 
-The same goes for Part 2. To show the answer in the output space or display, uncomment the answer line starting from
-the colon and working backward. They will be in print form to be seen in sys.stdout.
+The same goes for Part 2. To show the answer in the output space or display, run the file from the
+command line with python3 [day].py

@@ -17,7 +17,8 @@ for x in inputs1:
 
     if x.count(":")==7 and "cid" not in x:
         validPassCount+=1
-# part 1 answer 216: print(validPassCount)
+# part 1 answer 216
+print(validPassCount)
 
 inputs=[]
 
@@ -50,4 +51,5 @@ for x in inputs:
     (x['hcl'][0]!="#" or len(x['hcl'])!=7) or \
     marker1 or marker2: continue
     validcount+=1
-# part 2 answer 150: print(validcount)
+# part 2 answer 150
+print(validcount)

@@ -19,5 +19,7 @@ def f(r, d):
         xinput+=r
         yinput+=d
     return count
-# Part 1 answer: print(f(3,1))
-# Part 2 answer: print(f(1,1)*f(3,1)*f(5,1)*f(7,1)*f(1,2))
+# Part 1 answer 257
+print(f(3,1))
+# Part 2 answer 1744787392
+print(f(1,1)*f(3,1)*f(5,1)*f(7,1)*f(1,2))

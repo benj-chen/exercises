@@ -25,10 +25,12 @@ for line in inputs:
     score=row*8+col
     part2.append(score)
     best=max(best,score)
-# part 1 answer 896: print(best)
+# part 1 answer 896
+print(best)
 
 part2.sort()
 for x in range(part2[0],part2[-1]):
     if x-1 in part2 and x+1 in part2 and x not in part2:
         break
-#part 2 answer 659: print(x)
+# part 2 answer 659
+print(x)

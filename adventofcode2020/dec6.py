@@ -9,7 +9,8 @@ file.close()
 count=0
 for x in a:
     count+=len(set(x))-1
-# part 1 answer 6259: print(count)
+# part 1 answer 6259
+print(count)
 
 count=0
 for x in a:
@@ -18,4 +19,5 @@ for x in a:
         if y=='\n': continue
         if x.count(y)==numpeople:
             count+=1
-# part 2 answer 3178: print(count)
+# part 2 answer 3178
+print(count)
