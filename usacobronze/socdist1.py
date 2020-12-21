@@ -2,7 +2,7 @@ for i in range(1,16):
     f=open("socdist1_bronze_open20/{}.in".format(i), "r")
     x=f.readlines()[1][:-1]
     f.close()
-    print(x,end='\n               ')
+    print(x,end='\n')
     g=open("socdist1_bronze_open20/{}.out".format(i), "r")
     y=g.readlines()[0][:-1]
     g.close()

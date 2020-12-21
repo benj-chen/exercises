@@ -6,4 +6,8 @@ For example, if the answer to Part 1 was 100, and to print it required some coun
 print(counter)
 
 The same goes for Part 2. To show the answer in the output space or display, run the file from the
-command line with python3 [day].py
+command line with python3 dec[day].py
+
+Days in which I cheated because my solution didn't run fast enough begin with "cheat_". The sources and users who
+I pulled from are included in the code as comments. Code lines that I pulled from another source end in a single line
+comment #. That said, you can still view my attempt at the problem below the cheated code.

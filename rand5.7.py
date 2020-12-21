@@ -12,71 +12,28 @@
 # rand7 will be called MANY times, and (b) store state if it helps you.
 #
 # Bonus: What is the theoretical limit?
+# answer: If we are to assume that the numbers 1 through 5 are each called once per 5 numbers, then
 
-# part 1
-# from random import shuffle
-# def rand5():
-#     x=[]
-#     for y in range(10):
-#         x.append(1)
-#         x.append(2)
-#         x.append(3)
-#         x.append(4)
-#         x.append(5)
-#     shuffle(x)
-#
-#     for y in x:
-#         yield y
-#
-#
-# def rand7():
-#     #1 2 3 4 5, -2 -1 0 1 2
-#
-#     ss=next(rand5())/5*7
-#
-#     ress=[x/5*7 for x in range(1,8)]
-#     print(res)
-#     return ress.index(ss)+1
+
 
 from random import randint
 rand5=lambda: randint(1,5)
 def rand7():
-    return list(range(1,8))[int(rand5()/6*8)-1]
-
+    bytelist=''
+    for x in range(3):
+        while True:
+            temp=rand5()
+            if temp==3: continue
+            byte=1 if temp>3 else 0
+            bytelist+=str(byte)
+            break
+    return eval('0b'+bytelist)
 
 print('function start')
 
 res=[]
-for x in range(10000):
+for x in range(400000):
     res.append(rand7())
 print('function end')
 for x in range(1,8):
     print(res.count(x))
-# """
-#     scenarios
-#     1 -2    -1
-#     1 -1    0
-#     1 0     1
-#     1 1     2
-#     1 2     3
-#     2 -2    0
-#     2 -1    1
-#     2 0     2
-#     2 1     3
-#     2 2     4
-#     3 -2    1
-#     3 -1    2
-#     3 0     3
-#     3 1     4
-#     3 2     5
-#     4 -2    2
-#     4 -1    3
-#     4 0     4
-#     4 1     5
-#     4 2     6
-#     5 -2    3
-#     5 -1    4
-#     5 0     5
-#     5 1     6
-#     5 2     7
-#     """
