@@ -39,3 +39,44 @@ print(solution(2020))
 print(solution(30000000))
 # part 2 answer (1876406?) using stinky_sol. Solving time: unknown, at least 20 hours (before terminated)
 # print(stinky_sol(30000000))
+
+# further information, just because I was so excited about this day's solution. Units: seconds. Trials: sys+user time.
+# "mean" refers to the mean of all of the trials, while "average" drops the fastest and slowest times (aka outliers),
+# then evaluates the mean of what's left. This idea is what is used when observing a set of rubik's cube times,
+# to prevent a very good or very bad scramble from ruining the average.
+# Data:
+# solution(1000000), with 5 trials
+# mean: 0.185
+# average (mean of the 3 middle trials): 0.184
+# trial 1: 0.192
+# trial 2: 0.181
+# trial 3: 0.183
+# trial 4: 0.183
+# trial 5: 0.186
+
+# solution(10000000), with 5 trials
+# mean: 2.6500
+# average: 2.6357
+# trial 1: 2.679
+# trial 2: 2.530
+# trial 3: 2.813
+# trial 4: 2.564
+# trial 5: 2.664
+
+# solution(100000000), with 5 trials
+# mean: 33.107
+# average: 33.022
+# trial 1: 32.705
+# trial 2: 33.764
+# trial 3: 33.400
+# trial 4: 32.880
+# trial 5: 32.786
+
+# solution(1000000000), with 5 trials
+# mean: 674.1972
+# average: 650.69
+# trial 1: 613.362
+# trial 2: 805.555
+# trial 3: 618.989
+# trial 4: 714.091
+# trial 5: 618.989
