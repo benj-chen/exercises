@@ -1,4 +1,4 @@
-file=open("dec14input","r")
+file=open("i14", "r")
 inputs=[x.split(' = ') for x in file.readlines()]
 file.close()
 ins=[x[:] for x in inputs]

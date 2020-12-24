@@ -1,7 +1,7 @@
 # part 2 is not my work. Look further for more details. All code that is not my work ends in a #.
 # I still put my working, but too slow, code below the online solution.
 
-file=open("dec10input","r")
+file=open("i10", "r")
 global ins
 ins=list(map(int,[x[:-1] for x in file.readlines()]))
 file.close()

@@ -1,4 +1,4 @@
-file=open("dec8input","r")
+file=open("i8", "r")
 ins=[x.split()+[False] for x in file.readlines()] # False is in every line to see if the computer has visited it or not.
 # If it has, then the computer knows that there's an infinite loop, and terminates it by breaking
 file.close()

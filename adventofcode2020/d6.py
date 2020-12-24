@@ -1,4 +1,4 @@
-file=open('dec6input','r')
+file=open('i6', 'r')
 a=['']
 for x in file.readlines():
     if x=='\n':

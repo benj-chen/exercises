@@ -1,4 +1,4 @@
-with open('dec16input','r') as fin: INPUTS=[x[:-1] for x in fin.readlines()]
+with open('i16', 'r') as fin: INPUTS=[x[:-1] for x in fin.readlines()]
 params=[]
 paramsfin=False
 myticketfin=False

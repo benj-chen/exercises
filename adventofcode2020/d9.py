@@ -1,4 +1,4 @@
-file=open("dec9input","r")
+file=open("i9", "r")
 ins=[x[:-1] for x in file.readlines()]
 
 file.close()

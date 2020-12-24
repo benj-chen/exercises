@@ -1,4 +1,4 @@
-file = open("dec4input",'r')
+file = open("i4", 'r')
 inputs=file.readlines()
 file.close()
 inputs1=['']

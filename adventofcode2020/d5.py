@@ -1,4 +1,4 @@
-file=open("dec5input","r")
+file=open("i5", "r")
 inputs=[x[:-1] for x in file.readlines()]
 file.close()
 best=0

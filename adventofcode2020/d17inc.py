@@ -1,4 +1,4 @@
-with open('dec17input','r') as fin:
+with open('i17', 'r') as fin:
     INPUTS=[x[:-1] for x in fin.readlines()]
 
 # point (0,0,0) in order z,y,x is the top left of the input

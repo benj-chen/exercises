@@ -1,4 +1,4 @@
-file=open("dec3input",'r')
+file=open("i3", 'r')
 inputs=[x[:-1] for x in file.readlines()]
 file.close()
 

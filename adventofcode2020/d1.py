@@ -1,4 +1,4 @@
-file=open("dec1input", "r")
+file=open("i1", "r")
 # make sure to leave a blank newline at the bottom
 res=[int(x[:-1]) for x in file.readlines()]
 file.close()

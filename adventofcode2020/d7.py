@@ -1,4 +1,4 @@
-file=open("dec7input",'r')
+file=open("i7", 'r')
 ins=file.readlines()
 file.close()
 

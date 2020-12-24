@@ -61,7 +61,7 @@ def solution(inputs, typeSol: int, maxOccEmpty: int): # inputs is the puzzle inp
         # update the copy
         ins = [x.copy() for x in res]
 
-file=open('dec11input','r')
+file=open('i11', 'r')
 inputs=[(x[:-1]) for x in file.readlines()]
 file.close()
 # part 1 answer

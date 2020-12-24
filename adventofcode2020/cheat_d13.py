@@ -1,5 +1,5 @@
 # part 2 is not my work. Look further for more details. All code that is not my work ends in a #.
-file=open("dec13input","r")
+file=open("i13", "r")
 inputs=file.readlines()
 file.close()
 

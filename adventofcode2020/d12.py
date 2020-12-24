@@ -1,4 +1,4 @@
-file=open('dec12input','r')
+file=open('i12', 'r')
 ins=file.readlines()
 file.close()
 

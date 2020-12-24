@@ -1,4 +1,4 @@
-with open('dec15input', 'r') as file:
+with open('i15', 'r') as file:
     INPUTS = list(map(int, file.readlines()[0].split(',')))
 
 def stinky_sol(n):

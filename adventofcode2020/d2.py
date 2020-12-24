@@ -1,4 +1,4 @@
-file=open("dec2input","r")
+file=open("i2", "r")
 inputs=[]
 for x in file.readlines():
     i,j,k=x.split()
