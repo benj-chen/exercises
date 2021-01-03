@@ -1,3 +1,7 @@
+Some python files contain very new syntax, namely the "walrus operator", or the use of :=, which creates or changes
+a variable and returns it at the same time. First seen in Python 3.8. If your running of the file doesn't work, consider
+upgrading your Python version to 3.8 or better. For more information on the walrus opeartor, see:
+https://www.python.org/dev/peps/pep-0572/
 Each problem has 2 answers. The answer to the first part is enclosed in a comment starting in:
 # Part 1 answer
 followed by the answer, then a newline followed by the command that will reveal the answer when ran.
@@ -10,13 +14,15 @@ command line with:
 
 python3 d[day number].py
 
-Days on which I cheated because my solution didn't run fast enough begin with "cheat_", for example,
-"cheat_d13.py". The sources and users who I pulled from are included in the code as comments.
-Code lines that are not my work end in a single-line comment #. That said, you can still
-view my attempt at the problem below the cheated code.
+Days on which I cheated because my solution didn't run fast enough end with "inf.py", for example,
+"d13inf.py" (inf stands for infeasible). The sources and users who I pulled from, along with the code that produces a
+fast, feasible solution, are included in "better_sols.py".
+Infeasible files still have my attempt at the solution. They work, but do not run fast enough to be good. Please run
+infeasible files at your own risk. The code may run for many days or weeks.
+Code lines in better_sols that are not my work end in a single-line comment #.
 
-Days on which I wanted to solve later out of being confused, lazy, or busy end with "inc.py".
+Days on which I wanted to solve later out of being confused, lazy, or busy end with "inc.py". (inc stands for incomplete)
 
-Days on which I completed correctly start with "d", for example, "d1.py".
+Days on which I completed correctly and in a feasible time only contain "d" and the day, for example, "d1.py".
 
 Input files start with "i", followed by the day. They do not end with a ".txt".
