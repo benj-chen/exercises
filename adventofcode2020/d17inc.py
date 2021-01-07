@@ -5,7 +5,58 @@ with open('i17', 'r') as fin:
 
 c={0:INPUTS[:]} # key:int is the z level, value:list of y strings that are x long is the orthographic image of active and inactive cubes
 ADJ=[(dz, dy, dx) for dz in range(-1,2) for dy in range(-1, 2) for dx in range(-1, 2) if dx or dy or dz]
+print(c)
 # run 6 rounds
+def expz(d):
+    a=["."*len(d[0][0])]*len(d[0])
+    d[min(d)-1],d[max(d)+1]=(a[:],a[:])
+def expy(d):
+    a="."*len(d[0][0])
+    for i in d:
+        d[i].append(a)
+        d[i].insert(0,a)
+def expx(d):
+    for i in d:
+        for x in range(len(a:=d[i])):
+            a[x]="."+a[x]+"."
+
+print(c)
+for round in range(7):
+
+    print()
+    change=[]
+
+    print("After",round,"cycle:")
+    for x in c:
+        print("z =",x)
+        for y in (c[x]):
+            print(y)
+    for i in c:
+        for j in range(len(c[i])):
+            for k in range(len(c[i][j])):
+                active=c[i][j][k]=="#"
+                acount=0
+                for a in ADJ:
+                    if 0<=(i1:=i+a[0])<=max(c) and -1<(j1:=j+a[1])<len(c[i]) and -1<(k1:=k+a[2])<len(c[i][j]):
+                        print(a)
+                        acount+=int(c[i1][j1][k1]=="#")
+                if active and not(1<acount<4):change.append(((i,j,k),"."))
+                if not active and acount==3:change.append(((i,j,k),"#"))
+                print()
+    for x,y in change:
+        # c[x[0][0]][x[0][1]] = c[x[0][0]][x[0][1][:x[0][2]]+x[1]+ c[x[0][0] ][ x[0][1] ][ x[0][2+1:]]
+
+        c[x[0]][x[1]]=c[x[0]][x[1]][:x[2]]+y+c[x[0]][x[1]][x[2]+1:]
+    expx(c)
+    expy(c)
+    expz(c)
+count=0
+
+for x in c.values():
+    for y in x:
+        count+=y.count("#")
+print(count)
+"""
 l,w=len(INPUTS[0]),len(INPUTS)
 for round in range(1):
     print(c)
@@ -98,3 +149,4 @@ for x in c.values():
     for y in x:
         active+=y.count("#")
 print(active)
+"""

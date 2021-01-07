@@ -1,192 +1,84 @@
-n=int(input())
-inputs=[]
-for x in range(n):
-    z=input().split()
-    z[1:]=list(map(int,z[1:]))+list(map(int,z[1:]))+[False]+[x]
-    inputs.append(z)
-nfacing=[x for x in inputs if x[0]=="N"]
-efacing=[x for x in inputs if x[0]=="E"]
-nfacing=[y[1:] for y in sorted([[sum(x[1:3])]+x for x in nfacing])]
-efacing=[y[1:] for y in sorted([[sum(x[1:3])]+x for x in efacing])]
-nlen,elen=map(len,[nfacing,efacing])
-path=[]
-for x in range(min(nlen,elen)):
-    path.append(efacing[x][-1])
-    path.append(nfacing[x][-1])
-if nlen>elen:
-    path.extend(nfacing[elen:])
-if nlen<elen:
-    path.extend(nfacing[nlen:])
-eaten=set() # contain coordinates
-res=[]
-for x in inputs:
-    res.append([])
-# go in n**2 style, choose the lowest
-for a in path:
-    x=inputs[a]
-    mindist=100000000000
-    for y in inputs:
-        if x==y or x[0]==y[0]: continue
-
-        if x[0]=="N": # look at the ydelta
-            if y[4]-x[2]>0:
-                print('if if')
-                mindist=min(mindist,y[4]-x[2])
-
+# My working solution to "Stuck in a Rut" USACO problem from 2020 December 18. Not submitted on time in the 4 hour window - completed afterwards.
+# For my not working solution, see "rut_failed.py"
+class Cow:
+    def __init__(self,dir,x,y):
+        self.dir=dir=="E" # direction is True if the cow goes East, False if North
+        self.x=x
+        self.y=y
+        self.u=1000000000 # (u)pper limit, x or y depending on dir. This is the distance that self goes until stopped.
+            # Default to 10^9 (infinity), as per the guidelines on how far a cow can go
+    def move(self,ocow): # ocow is the other cow object to consider
+        # if they're in the same spot, change nothing.
+        if self.x == ocow.x and self.y == ocow.y:
+            return
+        # if they're facing the same direction and along the same line of movement, and if self is on the bottom or to the left,
+        # then that's as far as it goes. self.u is then updated.
+        if self.dir == ocow.dir:
+            if self.x==ocow.x and self.y<ocow.y:
+                self.u=min(self.u,self.y-ocow.y)
+            elif self.y==ocow.y and self.x<ocow.x:
+                self.u=min(self.u,self.x-ocow.x)
+            return
+        # the east has to be above and to the left of the north and vice versa. Edge cases are not covered here.
+        # if ocow is not in the general correct spot, then stop
+        if self.dir:
+            if ocow.x not in range(self.x,self.x+self.u+1) or\
+                self.y not in range(ocow.y,ocow.y+ocow.u):
+                return
         else:
-            if x[3]-z[3]<0:
-                print('else if')
-                mindist = min(abs(mindist), x[3]-z[1])
-    print()
-    res[a]=(mindist)
-print(res)
+            if ocow.y not in range(self.y,self.y+self.u+1) or\
+                self.x not in range(ocow.x,ocow.x+ocow.u):
+                return
+        # have to be facing different directions
+        xd,yd=(self.x-ocow.x),(self.y-ocow.y) # x delta: difference between the two x coordinates, and y delta.
 
+        if (self.dir and (xd > 0 or yd < 0)) or \
+           (not self.dir and (xd<=0 or yd > 0)):
+            return
+        xd, yd = map(abs, (xd, yd))
+        dord=(xd,yd) if self.dir else (yd,xd)
+        if dord[0]>dord[1]:
+            self.u=min(self.u,dord[0])
 
-# simulate now
-# so close... probably have to sort specially
+cows=[]
+for i in range(int(input())):
+    z=input().split()
+    z[1:]=list(map(int,z[1:]))
+    cows.append(Cow(*z))
+global inf
+inf=[]
+for i in cows:
+    for j in cows:
+        i.move(j)
+    if i.u == 1000000000:
+        inf.append(i)
+for i in cows:
+    i.u = 1000000000
+def extractTrueU(cow):
+    # this is the other part to why the code works.
+    # First, it is implied that there is at least one cow that goes to infinity, always. Against two cows, at least
+    # one has to go to infinity relative to the other cow.
+    # Second, this uses recursion to extract the true u of a cow, when compared against cows that we KNOW are also
+    # true u. At least one is given: all the cows in inf. So, if it's in inf, it's a base case.
+    if cow in inf:
+        return
+    retTo=[] # return to: cows that changed the current cow. We have to see if those cows have a true U.
+    for i in cows:
+        prevu=cow.u
+        cow.move(i)
+        if cow.u!=prevu:
+            extractTrueU(i)
+            retTo.append(i)
+            cow.u=prevu
+    for i in retTo:
+        cow.move(i)
+    if cow.u==1000000000:
+        inf.append(cow)
 
-for a in path: # change the order depending on the
-    x=inputs[a]
-    marked=False
-    result=[]
-    if x[0]=="N": # is good
-        for z in [y[1:] for y in inputs if y[0]=='E']:
-            xdelta=x[1]-z[0]
-            ydelta=z[1]-x[2]
-            if xdelta<0 or ydelta<0:
-                continue
+for i in cows: extractTrueU(i)
+for i in cows:
+    for j in cows:
+        i.move(j)
 
-            if xdelta<ydelta: # current gets to it firs
-                x[3]+=xdelta
-                x[4]+=ydelta
-                result.append(ydelta)
-                z[4]=True
-                marked=True
-            else: # other gets to it, stop
-                x[5]=True
-                x[3]+=xdelta
-                x[4]+=ydelta
-    else: # is not good, direction is E
-        for z in [y[1:] for y in inputs if y[0]=='E' and y!=x]: # change the list comprehension if
-            xdelta=x[1]-z[0]
-            ydelta=z[1]-x[2]
-            print(z[2])
-            print(x[0])
-            if (z[2]<x[1] and z[3]<x[2]):
-                continue
-            print(z)
-            print(xdelta)
-            print(ydelta)
-            print()
-            if xdelta>ydelta: # current gets to it first # this never runs
-                x[5]=True
-                x[3]+=xdelta
-                x[4]+=ydelta
-            else: # other gets to it, stop
-                x[3]+=xdelta
-                x[4]+=ydelta
-                result.append(ydelta)
-                z[4]=True
-                marked=True
-    if not marked:
-        res[a]=['Infinity']
-    else:
-        res[a]=[min(map(abs,result))]
-for x in res:
-    print(*x)
-
-"""
-
-
-n=int(input())
-inputs=[]
-for x in range(n):
-    inputs.append(input().split())
-    inputs[-1].insert(0,sum(map(int,inputs[-1][1:])))
-INPUTS=[x[0] for x in inputs]
-inputs.sort()
-
-inputs=[[x[1]]+list(map(int,x[2:]))+[False]+x[0] for x in inputs]
-print(inputs)
-eaten=set() # contain coordinates
-res=[]
-for x in inputs:
-    marked=False
-    result=[]
-    if x[0]=="N": # is good
-        for z in [y[1:] for y in inputs if y[0]=='E']:
-            xdelta=x[1]-z[0]
-            ydelta=z[1]-x[2]
-            if xdelta<0 or ydelta<0:
-                continue
-
-            if xdelta<ydelta: # current gets to it first
-                z[2]=True
-                result.append(ydelta)
-                marked=True
-            else:
-                x[3]=True
-    else: # is not good
-        print('else initiated')
-        print(x)
-        print()
-        for z in [y[1:] for y in inputs if y[0] == 'N' and not y[3]]:
-            print(z)
-            xdelta=x[1]-z[0]
-            ydelta=z[1]-x[2]
-            print(xdelta)
-            print(ydelta)
-            print()
-            if xdelta>0 or ydelta>0:
-                continue
-
-            if xdelta < ydelta:  # current gets to it first STOP THE OTHER ONE
-                result.append(abs(xdelta))
-                marked=True
-                z[2]=True
-            else:
-                x[3]=True
-    if not marked:
-        result.append("Infinity")
-    res.append(min(result))
-# for x in inputs:
-#     marked=False
-#     result=[]
-#     if x[0]=="N": # is good
-#         print('if initiated')
-#         for z in [y[1:] for y in inputs if y[0]=='E']:
-#             xdelta=x[1]-z[0]
-#             ydelta=z[1]-x[2]
-#             if xdelta<0 or ydelta<0:
-#                 continue
-#
-#             if xdelta<ydelta: # current gets to it first
-#                 x[3]+=xdelta
-#                 x[4]+=ydelta
-#                 result.append(ydelta)
-#                 marked=True
-#             else: # other gets to it, stop
-#                 x[3]+=xdelta-1
-#                 x[4]+=ydelta-1
-#     else: # is not good, direction is E
-#         print('else initiated')
-#         for z in [y[1:] for y in inputs if y[0] == 'N' and y[4]>=x[2] and y[3]<=x[1]]: # change the list comprehension if
-#             xdelta=x[1]-z[0]
-#             ydelta=z[1]-x[2]
-#             if xdelta>0 or ydelta>0:
-#                 continue
-#
-#             if xdelta < ydelta:  # current gets to it first
-#                 x[3]+=xdelta
-#                 x[4]+=ydelta
-#                 result.append(xdelta)
-#                 marked=True
-#             else: # other gets to it, stop
-#                 x[3]+=xdelta-1
-#                 x[4]+=ydelta-1
-#     if not marked:
-#         result.append("Infinity")
-#     res.append(result)
-#     print('end of iter')
-print(res)
-"""
+for i in cows:
+    print(i.u if i.u!=1000000000 else "Infinity")
