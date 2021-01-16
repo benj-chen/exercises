@@ -30,12 +30,7 @@ class Cow:
                 self.x not in range(ocow.x,ocow.x+ocow.u):
                 return
         # have to be facing different directions
-        xd,yd=(self.x-ocow.x),(self.y-ocow.y) # x delta: difference between the two x coordinates, and y delta.
-
-        if (self.dir and (xd > 0 or yd < 0)) or \
-           (not self.dir and (xd<=0 or yd > 0)):
-            return
-        xd, yd = map(abs, (xd, yd))
+        xd, yd = map(abs, (self.x-ocow.x, self.y-ocow.y))# x delta: difference between the two x coordinates, and y delta.
         dord=(xd,yd) if self.dir else (yd,xd)
         if dord[0]>dord[1]:
             self.u=min(self.u,dord[0])

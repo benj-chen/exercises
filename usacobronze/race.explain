@@ -1,0 +1,120 @@
+Problem description: (Problem analysis at line 50
+Bessie is running a race of length K (1≤K≤109) meters. She starts running at a speed of 0 meters per second. In a given second, she can either increase her speed by 1 meter per second, keep it unchanged, or decrease it by 1 meter per second. For example, in the first second, she can increase her speed to 1 meter per second and run 1 meter, or keep it at 0 meters per second and run 0 meters. Bessie's speed can never drop below zero.
+Bessie will always run toward the finish line, and she wants to finish after an integer amount of seconds (ending either at or past the goal line at this integer point in time). Furthermore, she doesn’t want to be running too quickly at the finish line: at the instant in time when Bessie finishes running K meters, she wants the speed she has just been traveling to be no more than X (1≤X≤105) meters per second. Bessie wants to know how quickly she can finish the race for N (1≤N≤1000) different values of X.
+
+SCORING:
+Test cases 2-4 satisfy N=X=1.
+Test cases 5-10 satisfy no additional constraints.
+INPUT FORMAT (file race.in):
+The first line will contain two integers K and N.
+The next N lines each contain a single integer X.
+
+OUTPUT FORMAT (file race.out):
+Output N lines, each containing a single integer for the minimum time Bessie needs to run K meters so that she finishes with a speed less than or equal to X.
+SAMPLE INPUT:
+10 5
+1
+2
+3
+4
+5
+SAMPLE OUTPUT:
+6
+5
+5
+4
+4
+When X=1, an optimal solution is:
+
+Increase speed to 1 m/s, travel 1 meter
+Increase speed to 2 m/s, travel 2 meters, for a total of 3 meters
+Keep speed at 2 m/s, travel 5 meters total
+Keep speed at 2 m/s, travel 7 meters total
+Keep speed at 2 m/s, travel 9 meters total
+Decrease speed to 1 m/s, travel 10 meters total
+When X=3, an optimal solution is:
+
+Increase speed to 1 m/s, travel 1 meter
+Increase speed to 2 m/s, travel 3 meters total
+Increase speed to 3 m/s, travel 6 meters total
+Keep speed at 3 m/s, travel 9 meters total
+Keep speed at 3 m/s, travel 12 meters total
+Note that the following is illegal when X=3:
+
+Increase speed to 1 m/s, travel 1 meter
+Increase speed to 2 m/s, travel 3 meters total
+Increase speed to 3 m/s, travel 6 meters total
+Increase speed to 4 m/s, travel 10 meters total
+This is because at the instant when Bessie has finished running 10 meters, her speed is 4 m/s.
+
+Problem analysis:
+With X being the target end speed, Bessie gets up to X, then gets to the speed X+T, where
+T is the top speed. Then, Bessie goes down to speed X. For example, when X=3:
+Increase speed to X
+Get to top speed 4, which is X+1, making T 1.
+Go back down to 3.
+
+Now, since Bessie will always go up in increments of 1, for steps 2 and 3 (which are the same
+to each other, just reversed), we are looking at an arithmetic sequence, a sequence that always
+goes up in the same increment. For example:
+1,2,3,4,5
+2,4,6,8,10
+are both arithmetic sequences, since the increment from step to step doesn't change.
+
+Since we know the increment is going to be 1, we want to find the number A such that
+the arithmetic sequence of X to A inclusive will be equal to:
+((total distance k) - (arithmetic sequence from 1 to X as step 1)) // 2
+and take the ceiling of that, since going over is allowed while going under isn't.
+
+Now, to find this magic number A, we need to create a function that I called arithrt,
+or "arithmetic sequence root" for short, given the target sum and the starting number.
+
+For example, arithrt(2,9) should give 4 since 2+3+4 gives an answer greater than or equal
+to 9.
+
+I did this with a binary search of sorts. First, test a number between the lower and upper
+bound called m for middle. If the middle and upper bound are the same, so if the difference
+between the lower and upper bound is 1 or 0, then return the start + the length of the seq
+to get the ending number. If the arithmetic sequence between start and m is lower than
+the target, the lower bound becomes that number. Otherwise, the upper bound is that number.
+This stays in a while loop until, as said before, the middle and upper bound are the same.
+
+Another thing to note is the function that I used to get the arithmetic sequence from start
+i to end j inclusive. Obviously, sum(range(i,j+1)) would work, but also obviously, that would
+be too slow to do thousands of times, especially since the difference between i and j can be
+so large, resulting in many addition operations. Instead, I observed:
+In the example sequence 1,2,3,4,5, the sum is the (first+last)*(last-first)//2+ the middle
+number if the length is odd.
+As such, only a maximum of 5 operations are performed no matter the difference between i and j.
+This is the scalable way to go.
+
+So, with arithrt() figured out, we can then simulate each target end speed as follows:
+First, find the target distance for the arithrt function. As the aforementioned steps 2 and 3
+are the same, just reversed forms of each other, they are basically the same to me, since
+they will have the same arithmetic sequence sum. So, with the function ceildiv() that will
+round a division up, rk or revised k will become ceildiv(k-step 1,2) or (k-step 1)/2 rounded
+up. This is the target distance to plug into arithrt(). Again, step 1 is to get from 1 to the target end speed.
+
+If rk < x, that is, x is bigger than rk itself, it's quite obvious to just print the
+arithrt of 1 to k, because that will be all that is necessary if rk<x. This is an important
+catch because without it, program actually produces incorrect answers.
+
+Then, get the arithrt from x to rk. I called it l. This is the top speed that Bessie goes
+
+Simulate the value that would come from going to this top speed and then back down. I did
+this by excluding the top speed, since there may be only one instance of the top speed.
+
+Since I assume that steps 2 and 3 are the same, I can't exactly have half of an instance
+of the top speed. As such, I left the top speed out for now.
+
+I then found the theoretical count of this value, which may be short of the distance.
+
+I then evaluated how many seconds of top speed that Bessie would need to go, using
+ceildiv(k-val,l).
+
+Then, adding that to count, I wrote to the file using print, because str() is an extra
+calculation needed for writing to files directly... not sure if it's a time save or not.
+
+The prettier version of line 34 is featured in the comment below the file closing.
+The un-commented one represents the better solution in terms of memory and file size.
+I decided to keep the comments despite them increasing file size.
