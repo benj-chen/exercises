@@ -1,0 +1,77 @@
+Problem description (analysis starts at line 34)
+Farmer John is worried for the health of his cows after an outbreak of the highly contagious bovine disease COWVID-19.
+Despite his best attempt at making his N cows (1≤N≤1000) practice "social distancing", many of them still unfortunately
+contracted the disease. The cows, conveniently numbered 1…N, are each standing at distinct points along a long path
+(essentially a one-dimensional number line), with cow i standing at position xi. Farmer John knows that there is a
+radius R such that any cow standing up to and including R units away from an infected cow will also become infected (and
+will then pass the infection along to additional cows within R units away, and so on).
+
+Unfortunately, Farmer John doesn't know R exactly. He does however know which of his cows are infected. Given this data,
+please determine the minimum possible number of cows that were initially infected with the disease.
+
+INPUT FORMAT (file socdist2.in):
+The first line of input contains N. The next N lines each describe one cow in terms of two integers, x and s, where x is
+the position (0≤x≤106), and s is 0 for a healthy cow or 1 for a sick cow. At least one cow is sick, and all cows that
+could possibly have become sick from spread of the disease have now become sick.
+OUTPUT FORMAT (file socdist2.out):
+Please output the minimum number of cows that could have initially been sick, prior to any spread of the disease.
+SAMPLE INPUT:
+6
+7 1
+1 1
+15 1
+3 1
+10 0
+6 1
+SAMPLE OUTPUT:
+3
+In this example, we know that R<3 since otherwise the cow at position 7 would have infected the cow at position 10.
+Therefore, at least 3 cows must have started out infected -- one of the two cows at positions 1 and 3, one of the two
+cows at positions 6 and 7, and the cow at position 15.
+
+Problem credits: Brian Dean
+
+Problem analysis:
+
+First, we need to find the distance R. We do this by evaluating 2 cows at a time, for example, cows 1 and 2, then cows 2
+and 3, then cows 3 and 4, and so on. This is important in preventing over-counting the initial cows. I evaluated the
+distance R to be the next cow's distance minus the current cow's distance, provided that exactly 1 of the cows is
+infected with COWVID. It doesn't matter which cow is infected. Observe the following example input:
+
+3
+7 1
+10 0
+12 1
+
+Here, the distance of R is two. How do I know this? Well, let's go through the above process:
+
+Evaluate 7 1 and 10 0. Exactly one of the cows is infected. So, make R 10-7=3 for now.
+
+Evaluate 10 0 and 12 1. Exactly one of the cows is infected again. So, make R the minimum between R (3) and 12-10=2,
+which is 2.
+
+This proves that as long as one cow is infected (or more importantly, one cow is not infected), it doesn't matter which
+cow is infected.
+
+Now that we have the lowest R, we don't need the cows that are not infected anymore, or what marks the cows as infected
+or not, so clean up the list of cows there. Then, we observe the fact that a group of cows can only infect each other
+if each set of 2 cows is within R spaces of each other. For example, given that R is 3, the group of infected cows:
+
+1 3 4 5 7
+
+has at least 1 initial infected cow. This is possible because each cow is within R of each other (or "socially distant")
+
+I refer a group that is all not socially distant from each other as a chain. Such a chain is finished whenever the
+ending cow is socially distant from the next cow. Whenever this end happens, I add one to the number of initial cows.
+
+Although I originally created a social distance function called socdist() found in the comments below the code, I
+eventually baked it into where I was using it, since I was only using said function in one place, so calling a function
+is a time loss and an unnecessary file size gain. The way socdist() works is that it only considers itself and the cow
+in front of it, because the cow behind it already had socdist() performed on itself and the current cow. If the next
+cow's coordinate is >= current cow's coordinate plus R (see line 36 or so for a refresher), then these two cows could not
+have possibly infected each other. They are considered socially distant, so the current cow must have been the end
+of the current chain and the next cow must be the start (not that it really matters, since we are only monitoring the
+end of each chain). I then take the number of initial cows and add 1, since the last cow must be the end of a chain.
+
+And that's it! It was surprising simple, yet I struggled on it for a long time before taking a break and restarting the
+whole problem from scratch with fresh eyes.
