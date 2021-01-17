@@ -1,0 +1,83 @@
+Problem description (analysis starts at line 31):
+Farmer John is lining up his N cows (2≤N≤10^3), numbered 1…N, for a photoshoot. FJ initially planned for the i-th cow
+from the left to be the cow numbered ai, and wrote down the permutation a1,a2,…,aN on a sheet of paper. Unfortunately,
+that paper was recently stolen by Farmer Nhoj!
+Luckily, it might still possible for FJ to recover the permutation that he originally wrote down. Before the sheet was
+stolen, Bessie recorded the sequence b1,b2,…,bN−1 that satisfies bi=ai+ai+1 for each 1≤i<N.
+
+Based on Bessie's information, help FJ restore the "lexicographically minimum" permutation a that could have produced b.
+A permutation x is lexicographically smaller than a permutation y if for some j, xi=yi for all i<j and xj<yj (in other
+words, the two permutations are identical up to a certain point, at which x is smaller than y). It is guaranteed that at
+least one such a exists.
+
+SCORING:
+Test cases 2-4 satisfy N≤8.
+Test cases 5-10 satisfy no additional constraints.
+INPUT FORMAT (file photo.in):
+The first line of input contains a single integer N.
+The second line contains N−1 space-separated integers b1,b2,…,bN−1.
+
+OUTPUT FORMAT (file photo.out):
+A single line with N space-separated integers a1,a2,…,aN.
+SAMPLE INPUT:
+5
+4 6 7 6
+SAMPLE OUTPUT:
+3 1 5 2 4
+a produces b because 3+1=4, 1+5=6, 5+2=7, and 2+4=6.
+
+Problem credits: Benjamin Qi and Chris Zhang
+
+Problem analysis:
+
+This problem was very difficult to understand, so I'm grateful that USACO always gives an example. Essentially, find all
+sequences such that the first plus the second equals the first element of a, the second and third equals the second
+element of a, etc. Among those, compare two at a time. Compare the first unique value of each. The sequence that has the
+smaller value is the lexicographically minimal one. Do this until only one sequence is left and print that.
+
+First, to determine possible solutions, I observed in the example:
+The sequence
+4 6 7 6
+can be broken down like so:
+
+  4     6     7     6
+(3+1)+(1+5)+(5+2)+(2+4)
+
+So, in other words, the target sequence will have 2 of every item, but 1 for 2 items, because the sequence can again be
+broken down like this:
+
+3+(1*2)+(5*2)+(2*2)+4
+
+Or:
+
+(1+2+3+4+5)*2 - 3 - 4
+
+So, knowing that that is equal to the given sequence, we simply have to remove 2 at a time and ask if the sequence sum
+would equal the sequence that we're trying to get to. Start with the sum of everything multiplied by 2, and subtract
+two items from it and see if it matches what we're trying to get to. If it does, the add that to the set posstakeout,
+both ways. For example, (3,4) and (4,3) would both be in there. This is important, because 3 could be the start or the
+end.
+
+Then, for each possible configuration of start and end, I made a list called arr, which stands for arrangement. Arr
+would be a possible solution, if everything works. For each item in the given sequence a, test that number - the last
+number of arr. If that number is less than 1, the sequence is invalid, and it needs to perform flow control twice -
+break out of the given sequence for loop, and continue to the next possible start end configuration. I achieved this
+with the variable need, which is True if a continue is needed, and then used break if need was True.
+
+Otherwise, if b is valid, then append that to arr. If variable need is never flipped to True, then it's a valid sequence
+and should be appended to res, containing all valid sequences.
+
+Then, I needed to find the "lexicographically minimum" sequence. I first initialized the minimum sequence with the first
+possible sequence popped, called minim. Then, for each index, I subtracted current[index] from minim[index]. If it's 0,
+don't do anything. If it's greater than 0, then we have a new minimum because that index is lower than the current
+minimum. Either way, we have found the minimum relative to the current one, so we can break and move to the next
+possible sequence. At the end, we have the lexicographically minimum sequence, so we write it to the output file.
+
+The first modification made a few weeks after finishing the problem involves lines 5 and 6. The sum of a range can be
+better simplified to the modified sumrange() method from race.py. I believe this is faster than the original sum(n).
+
+The other modification made at the same time as the first mod involves line 12, regardless of the presence of
+modification 1 or not. I realized that asum and nsum were only used once at the same place, so I made the subtraction
+once instead of every time it iterated through that for for loop. In short, a bottleneck prevention.
+
+This problem was hard, and it's not the best, as some cases run at 600 or so milliseconds according to the USACO grader.

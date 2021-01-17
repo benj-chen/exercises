@@ -2,14 +2,14 @@ with open("photo.in","r") as fin:
     n,a=[list(map(int,x.split())) for x in fin.readlines()]
 
 n=range(1,n[0]+1)
-asum=sum(a)
-nsum=sum(n)*2
+sumrange2=lambda i,j: (i+j)*(j-i+1)
+nsum=sumrange2(1,n[-1])-sum(a)
 # try taking out one at a time per one at a time
 posstakeout=set()
 for x in n:
     for y in n:
         if y==x: continue
-        if not nsum-asum-x-y:
+        if not nsum-x-y:
             posstakeout.add((x,y))
 res=[]
 need=False
