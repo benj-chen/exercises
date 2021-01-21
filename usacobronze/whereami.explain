@@ -1,0 +1,50 @@
+Problem description (Problem analysis begins at line 29):
+Farmer John has gone out for a walk down the road and thinks he may now be lost!
+Along the road there are N farms (1≤N≤100) in a row. Farms unfortunately do not have house numbers, making it hard for
+Farmer John to figure out his location along the road. However, each farm does have a colorful mailbox along the side of
+the road, so Farmer John hopes that if he looks at the colors of the mailboxes nearest to him, he can uniquely determine
+where he is.
+
+Each mailbox color is specified by a letter in the range A..Z, so the sequence of N mailboxes down the road can be
+represented by a string of length N containing letters in the range A..Z. Some mailboxes may have the same colors as
+other mailboxes. Farmer John wants to know what is the smallest value of K such that if he looks at any sequence of K
+consecutive mailboxes, he can uniquely determine the location of that sequence along the road.
+
+For example, suppose the sequence of mailboxes along the road is 'ABCDABC'. Farmer John cannot set K=3, since if he sees
+'ABC', there are two possible locations along the road where this consecutive set of colors might be. The smallest value
+of K that works is K=4, since if he looks at any consecutive set of 4 mailboxes, this sequence of colors uniquely
+determines his position along the road.
+
+INPUT FORMAT (file whereami.in):
+The first line of input contains N, and the second line contains a string of N characters, each in the range A..Z.
+OUTPUT FORMAT (file whereami.out):
+Print a line containing a single integer, specifying the smallest value of K that solves Farmer John's problem.
+SAMPLE INPUT:
+7
+ABCDABC
+SAMPLE OUTPUT:
+4
+Problem credits: Brian Dean
+
+Problem analysis (completed in 37 minutes or so):
+* by the way, "complete" means that I passed all test cases.
+
+At first, I tried doing something fancy with getting all of the possible substrings and trying to find the shortest
+substring that only appears once. However, that was not what the problem was asking, so after rereading, I changed my
+approach.
+
+I took a bit of a brute force method to solve this problem, by starting at a substring length of 1 and going up to the
+length of the actual string. Given a substring length sbs, it will test every segment of length sbs in the overall
+string. If they all appear only once, then break and write that length to the output file.
+
+What should be worrying is how to actually find how many occurrences that a substring occurs in an overall string. I had
+to make a new function. As a concept, it seems similar to the builtin method str.count(). However, consider the
+following example, given a substring "aa", and an overall string "aaa".
+
+"aaa".count("aa") will give me 1, because after scanning the first aa, .count() only considers what is after. However,
+I want that count function to return 2, because "aa" does appear in two unique indexes. I therefore made a ct() function
+given a substring targ and the length tlen, comparing each substring of length tlen of that original string using a for
+loop.
+
+Starting with this brute force method (and just understanding the problem) would have saved me 20 minutes or so, so now
+I know to read the problem better and to not do it at 11 pm when I'm tired... but I did complete it.

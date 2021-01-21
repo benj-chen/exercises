@@ -123,3 +123,5 @@ calculation needed for writing to files directly... not sure if it's a time save
 The prettier version of line 34 is featured in the comment below the file closing.
 The un-commented one represents the better solution in terms of memory and file size.
 I decided to keep the comments despite them increasing file size.
+
+1/17 modification: bit shift time save in sumrange()

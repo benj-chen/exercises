@@ -80,4 +80,12 @@ The other modification made at the same time as the first mod involves line 12, 
 modification 1 or not. I realized that asum and nsum were only used once at the same place, so I made the subtraction
 once instead of every time it iterated through that for for loop. In short, a bottleneck prevention.
 
-This problem was hard, and it's not the best, as some cases run at 600 or so milliseconds according to the USACO grader.
+This problem was hard, and it's not the best, as some cases run at 500 or so milliseconds according to the USACO grader.
+
+1/17/2021: Large refactor.
+
+Rather than determining which sequences work and then sorting it, if a sequence works, then the for loops immediately
+break and the program ends with writing that sequence. This is because for each start, there is only at most 1 working
+solution. And, since the outer for loop goes up, the first working sequence has the lexicographically lowest sequence.
+
+This refactor is shown in photo+.py. Original is still as photo.py.

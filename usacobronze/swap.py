@@ -14,6 +14,3 @@ while result not in results:
 # 0th index is the base case
 with open("swap.out","w") as fout:
     fout.write('\n'.join(map(str,results[k%len(results)]))+'\n')
-
-with open("swap.in","r") as fin:
-    [n,k],[a1,a2],[b1,b2]=[list(map(int,x.split())) for x in fin.readlines()]

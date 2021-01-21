@@ -71,9 +71,10 @@ def extractTrueU(cow):
         inf.append(cow)
 
 for i in cows: extractTrueU(i)
-for i in cows:
-    for j in cows:
-        i.move(j)
+# unnecessary for loop
+# for i in cows:
+#     for j in cows:
+#         i.move(j)
 
 for i in cows:
     print(i.u if i.u!=1000000000 else "Infinity")

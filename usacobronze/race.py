@@ -5,7 +5,7 @@ ins=map(int,ins)
 def ceildiv(x,y):
     xy=x//y if y!=2 else x>>1 # bit shift timesaving LETS GOOOOOOO
     return xy+(int(xy!=x/y))
-sumrange=lambda i,j: 0 if i>j else (i+j)*(j-i+1)//2
+sumrange=lambda i,j: 0 if i>j else (i+j)*(j-i+1)//2 # haha another bit shift timesave
 
 # given a target t, find e such that sum(range(1,e+1)) or sumrange(1,e) is the lowest number >= t.
 # binary search ish? add or subtract something
