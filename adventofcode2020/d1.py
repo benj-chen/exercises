@@ -20,5 +20,5 @@ for x in res:
             if x+y+z==2020:
                 answer2=(x,y,z)
 answer2 #this makes sure an answer for part 2 exists
-# Part 2 answer 293450526
+# Part 2 answer 2934505261
 print(answer2[0]*answer2[1]*answer2[2])
