@@ -42,11 +42,7 @@ for i in range(int(input())):
     cows.append(Cow(*z))
 global inf
 inf=[]
-for i in cows:
-    for j in cows:
-        i.move(j)
-    if i.u == 1000000000:
-        inf.append(i)
+print(len(inf))
 for i in cows:
     i.u = 1000000000
 def extractTrueU(cow):
@@ -55,8 +51,10 @@ def extractTrueU(cow):
     # one has to go to infinity relative to the other cow.
     # Second, this uses recursion to extract the true u of a cow, when compared against cows that we KNOW are also
     # true u. At least one is given: all the cows in inf. So, if it's in inf, it's a base case.
+    print("etu called")
     if cow in inf:
         return
+    print("inf passed")
     retTo=[] # return to: cows that changed the current cow. We have to see if those cows have a true U.
     for i in cows:
         prevu=cow.u

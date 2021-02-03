@@ -1,23 +1,19 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include <string>
 using namespace std;
 int main() {
     ifstream inp("i1");
-    vector<short> inputs; // short is fine because none of the numbers go over 4 digits.
+    vector<int> inputs;
     string str;
-    while (getline(inp,str)) {
-        inputs.push_back((short) stoi(str));
-    }
-    // since the max is 305274146 (673*673*674 because the most optimized volume
-    // for l+w+h=x is such that l,w, and h are as close as possible. In other words,
-    // a cube.)
-    // can't use a short, which is only guaranteed to a number as big as 65535.
+    while (getline(inp,str)) inputs.push_back(stoi(str));
+    inp.close();
     int p1=0;
     int p2=0;
-    for (short &i: inputs) {
-        for (short &j: inputs) {
-            for (short &k: inputs) {
+    for (int &i: inputs) {
+        for (int &j: inputs) {
+            for (int &k: inputs) {
                 if (!p2 && i+j+k==2020) {
                     p2=i*j*k;
                     break;
