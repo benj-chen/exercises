@@ -12,8 +12,6 @@ int main() {
             cout << s << '\n';
             continue;
         }
-        cout << s[0];
-        cout << --len-1;//something
-        cout << s[len] << '\n';
+        cout << s[0] << len-2 << s[len-1] << '\n';
     }
 }
