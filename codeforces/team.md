@@ -1,5 +1,4 @@
-Found at [https://codeforces.com/contest/231/problem/A]
-(https://codeforces.com/contest/231/problem/A)
+Found at [https://codeforces.com/contest/231/problem/A](https://codeforces.com/contest/231/problem/A)
 
 For context, sum is the total number of problems that the team uploads. sumprob is the total number of people that are sure that they got a certain problem. gb is the good/bad variable, denoting if the current input says that a person is sure that they got the problem or not (except for the number of problems, every input is a 1 or 0, so I used a bool).
 
