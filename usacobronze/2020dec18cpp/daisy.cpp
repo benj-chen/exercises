@@ -17,7 +17,6 @@ vector<int> subvector(const vector<int>& vec, int st, int e)
 }
 bool isIn(const vector<int>& vec, int target)
 {
-    if (!(target+1)) return false;
     for (int i: vec)
     {
         if (i==target) return true;

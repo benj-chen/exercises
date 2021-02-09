@@ -78,9 +78,9 @@ int main()
     int len;
     cin >> len;
     vector<Cow> cows;
+    char dir;
+    int x,y;
     for (int i=0;i<len;i++) {
-        char dir;
-        int x,y;
         cin >> dir >> x >> y;
         cows.push_back(Cow(dir,x,y));
     }
@@ -88,8 +88,7 @@ int main()
     for (Cow &i: cows)
     {
         extractTrueU(i,inf,cows);
-        if (i.u!=1000000000) cout << i.u;
-        else cout << "Infinity";
+        i.u!=1000000000 ? cout << i.u : cout <<"Infinity";
         cout << endl;
     }
 }

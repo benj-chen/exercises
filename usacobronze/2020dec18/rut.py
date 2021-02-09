@@ -51,10 +51,9 @@ def extractTrueU(cow):
     # one has to go to infinity relative to the other cow.
     # Second, this uses recursion to extract the true u of a cow, when compared against cows that we KNOW are also
     # true u. At least one is given: all the cows in inf. So, if it's in inf, it's a base case.
-    print("etu called")
+
     if cow in inf:
         return
-    print("inf passed")
     retTo=[] # return to: cows that changed the current cow. We have to see if those cows have a true U.
     for i in cows:
         prevu=cow.u
