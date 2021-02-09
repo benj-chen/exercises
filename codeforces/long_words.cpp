@@ -13,7 +13,7 @@ int main() {
             continue;
         }
         cout << s[0];
-        cout << --len-1;//something
+        cout << --len-1;
         cout << s[len] << '\n';
     }
 }
