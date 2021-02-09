@@ -12,3 +12,6 @@ The 'euler.net' directory has solutions from the 'archives' section at [https://
 
 ## ADVENTOFCODE2020
 The 'adventofcode2020' directory features solutions from daily problems from [https://adventofcode.com/2020](https://adventofcode.com/2020). There are two problems for each day of the month of December. The daily problems, when strung together, make a complete story revolving around Santa.
+
+## CODEFORCES
+Mainly to serve as c++11 practice problems, I include a .md file with each problem to explain what I did. I'll update problems with better methods as I continue to learn c++.
