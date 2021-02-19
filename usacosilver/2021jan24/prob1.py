@@ -24,7 +24,7 @@ def track(num): # i is the list of swaps
     total=[]
     while True:
         for x in ins:
-            print(reached)
+            # print(reached)
             if reached[-1] in x:
                 # if (x[0]==reached[-1] and x[1] in reached) or (x[1]==reached[-1] and x[0] in reached):
                 # if x[0] in reached and x[1] in reached:
@@ -34,21 +34,21 @@ def track(num): # i is the list of swaps
         if reached in total:
             return total
         total.append(reached)
-print(len(set(*track(3))))
-print("\n\n\n")
-for y in arr:
-    print(len(set(*track(y))))
+# print(len(set(*track(3))))
+# print("\n\n\n")
+# for y in arr:
+#     print(len(set(*track(y))))
 minute=0
 base=list(range(n))
 while True:
-    print(arr)
+    # print(arr)
     goto[arr[ins[minute][0]]].add(ins[minute][1])
     goto[arr[ins[minute][1]]].add(ins[minute][0])
     arr[ins[minute][0]],arr[ins[minute][1]]=arr[ins[minute][1]],arr[ins[minute][0]]
     if arr==base:
         break
-    if minute+1==k:
-        print("e")
+    # if minute+1==k:
+        # print("e")
     minute=(minute+1)%k
 for x in goto:
     print(len(goto[x]))
