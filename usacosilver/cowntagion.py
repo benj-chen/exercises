@@ -1,9 +1,29 @@
 ## restarting because yes
+## tree, direct attention to test cases 1-4
+## binary tree for test cases 5-7 (except for farm 1)
 
 n = int(input())
-paths=[tuple(map(int,input())) for x in range(n-1)]
+paths=[tuple(map(lambda x: int(x)-1,input().split())) for x in range(n-1)]
+# log2 = lambda n: (n-1).bit_length() # ceil log2 n
+
+# print(log2(n)+n-1)
+#^ test cases 1-4
+ct=n-1 # minimum count, 
+go=[]
+for x in range(n):
+    go.append([])
+for x in paths:
+    go[x[0]].append(x[1])
+    go[x[1]].append(x[0])
+print(go)
+maxlenind=(-1,-1)
+for x in go:
+    l=len(x)
+    if l>maxlenind[0]:
+        maxlenind=[l,x]
+
 ## make some map of something
-conn = []
+# conn = []
 # n=int(input())
 # paths=[tuple(map(int,input().split())) for x in range(n-1)]
 # f={x:[] for x in range(1,n+1)}# farm paths
