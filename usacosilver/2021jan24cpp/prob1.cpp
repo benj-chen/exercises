@@ -1,38 +1,52 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <set>
+// LETS GOOOO THE SOLUTION WAS THE SAME AS ONLINE but it doesn't work f
+// analysis was good but execution lacked because my cpp isn't great
+#include <bits/stdc++.h>
 using namespace std;
-using vi = vector<int>;
-int q;
-int geti1() {
-    // get input -1
-    cin >>q;
-    return q-1;
-}
-void swap(vi& vec,int pos1,int pos2) {
-    vec[pos1]+=vec[pos2];
-    vec[pos2]=vec[pos1]-vec[pos2];
-    vec[pos1]=vec[pos1]-vec[pos2];
+using vi=vector<int>;
+using us = set<int>;
+vi lrn;
+vector<us> go;
+vi getgroup(int x, int init) {
+    if (x==init) return {x};
+    vi temp={x};
+    for (int i:getgroup(lrn[x],init)) temp.push_back(i);
+    return temp;
 }
 int main() {
     int n,k;
     cin >> n >> k;
-    int ins[2][k];
+    for (int i=0;i<n;i++){
+        
+        lrn.push_back(i);
+        go.push_back((us){});
+    }
     for (int i=0;i<k;i++) {
-        ins[i][0]=geti1();
-        ins[i][1]=geti1();
+        int a,b;
+        cin >> a >> b;
+        // swap lrn[a] and lrn[b]
+        lrn[--a]+=lrn[--b];
+        lrn[b]=lrn[a]-lrn[b];
+        lrn[a]=lrn[a]-lrn[b];
+        go[lrn[a]].insert(a);
+        go[lrn[b]].insert(b);
     }
-    set go[n];
-    vi lrn(n);
-    for (int x[]: ins) {
-        swap(lrn,x[0],x[1]);
-        go[lrn[x[0]]].push_back(x[0]);
-        go[lrn[x[1]]].push_back(x[1]);
+    map<vi,int> res;
+    for (int i=0;i<n;i++) {
+        vi gr = getgroup(lrn[i],i);
+        
+        sort(gr.begin(),gr.end());
+        // no sort because unsorted right?
+        if (!(res[gr])) {
+            us temp = go[i];
+            for (int j: gr) {
+                for (int k: go[j]) {
+                    temp.insert(k);
+                }
+            }
+            res[gr]=fmax(1,temp.size());
+        }
+        cout << res[gr] << '\n';
     }
-
-
-
 }
 
 

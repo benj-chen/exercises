@@ -16,18 +16,20 @@ for x in ins:
     goto[lrn[x[0]]].add(x[0])
     goto[lrn[x[1]]].add(x[1])
 # last is lrn
-groups=[]
 def getgroup(x,init):
     if x==init: return (x,)
     return (x,)+getgroup(lrn[x],init)
 res={}
 
-def recurse(targ,st):
-    return set() if st==targ else goto[targ] | recurse(lrn[targ],st)
+def union(setgroup):
+    res=set()
+    for i in setgroup:
+        res|=i
+    return res
 
 for x in nn:
     gr = getgroup(lrn[x],x)
-    if gr not in res: res[gr] = max(1,len(goto[x] | recurse(lrn[x],x)))
+    if gr not in res: res[gr] = max(1,len(union([goto[y] for y in gr])))
     print(res[gr])
 
 # goto=list(map(set,goto))
