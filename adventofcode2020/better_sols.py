@@ -5,6 +5,7 @@ file.close()
 ins=[0]+sorted(ins)+[max(ins)+3]
 # Day 10, part 2 code courtesy of reddit user masslessneutrino: https://www.reddit.com/user/masslessneutrino/
 # unoriginal code lines end in a comment #
+# I did my own solution in c++ that is very good, so this is strictly for python.
 def slow_count(data, index=0):#
     data.sort() #
     count = 0 #

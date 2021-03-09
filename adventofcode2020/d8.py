@@ -20,6 +20,8 @@ while True:
     cmd+=1
 
 for x in range(len(ins)):
+    for y in range(len(ins)): # repositioning this because this may not work for every case otherwise
+        ins[y][2]=False
     acc=0
     cmd=0
 
@@ -49,5 +51,3 @@ for x in range(len(ins)):
         ins[x][0]="nop"
     elif ins[x][0]=="nop":
         ins[x][0]="jmp"
-    for x in range(len(ins)):
-        ins[x][2]=False

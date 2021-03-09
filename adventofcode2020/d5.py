@@ -11,7 +11,7 @@ for line in inputs:
             ulim-=((ulim-llim)//2+(ulim-llim)%2)
         else:
             llim+=((ulim-llim)//2+(ulim-llim)%2)
-    if line[-3]=="F": row=ulim
+    if line[-4]=="F": row=ulim
     else: row=llim
     llim1=0
     rlim=7

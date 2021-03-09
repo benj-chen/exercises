@@ -38,7 +38,6 @@ for x in inputs:
         if i not in "1234567890abcdef": marker1=True;break
     try: int(x['pid'])
     except: marker2 = True
-
     if \
     (x['byr']>'2002' or x['byr']<'1920') or \
     (x['iyr']<'2010' or x['iyr']>'2020') or \
