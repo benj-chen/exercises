@@ -14,6 +14,11 @@ command line with:
 
 python3 d[day number].py
 
+Or, if you're using C++:
+clang++ -std=c++17 d[day number].cpp -O2 -o a.out
+
+./a.out
+
 Days on which I cheated because my solution didn't run fast enough end with "inf.py", for example,
 "d13inf.py" (inf stands for infeasible). The sources and users who I pulled from, along with the code that produces a
 fast, feasible solution, are included in "better_sols.py".
