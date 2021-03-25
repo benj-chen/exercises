@@ -121,6 +121,69 @@ int man() {
 //     }
 
 // }
+// int main() {
+//     ifstream fin("socdist.in");
+//     ofstream cout("socdist.out");
+//     int n,k;
+//     fin >> n >> k;
+//     vector<ul> st(k);
+//     vector<ul> end(k);
+//     for (int i=0;i<k;i++) {
+//         fin >> st[i] >> end[i];
+//     }
+//     sort(st.begin(),st.end());
+//     sort(end.begin(),end.end());
+//     for (ul& i: end) i++;
+//     // simulate each result lol
+//     // the largest d could be is max(end)-min(start)/n
+//     // check 1 as a base
+//     ul max=end.back(),min=st[0];
+//     ul largest = max-min;
+//     vector<bool> ok(max);
+//     // for (bool& b: ok) b=false;
+//     for (int i=0;i<k;i++) {
+//         for (ul j=st[i];j<end[i];j++) { // req increment
+//             ok[j]=1;
+//         }
+//     }
+
+//     for (ul q=largest;q;q--)  { // change to binary search essentially for log(n)
+//         unsigned long long last=min;
+//         // use n-1 because you place one at the front no matter what
+//         for (int i=1;i<n;i++) {
+//             last+=q-1;
+//             do {
+//                 if (last>=max) goto end;
+//                 last++;
+//             }
+//             while (!ok[last]);
+//         }
+//         if (last<=max) {
+//             cout << q << endl;
+//             return 0;
+//         }
+//         end:;
+//     }
+
+// }
+
+bool good(ul q, vector<bool>& ok,ul& max, ul& min, int n) {
+    unsigned long long last=min;
+    // use n-1 because you place one at the front no matter what
+    for (int i=1;i<n;i++) {
+        last+=q-1;
+        do {
+            if (last>=max) return 0;
+            last++;
+        }
+        while (!ok[last]);
+    }
+    if (last<=max) {
+        return 1;
+    }
+    return 0;
+}
+
 int main() {
     ifstream fin("socdist.in");
     // ofstream cout("socdist.out");
@@ -141,29 +204,46 @@ int main() {
     ul largest = max-min;
     vector<bool> ok(max);
     // for (bool& b: ok) b=false;
-    cout << "ok\n";
     for (int i=0;i<k;i++) {
         for (ul j=st[i];j<end[i];j++) { // req increment
             ok[j]=1;
         }
     }
-
-    for (ul q=largest;q;q--)  {
-        unsigned long long last=min;
-        // use n-1 because you place one at the front no matter what
-        for (int i=1;i<n;i++) {
-            last+=q-1;
-            do {
-                if (last>=max) goto end;
-                last++;
-            }
-            while (!ok[last]);
+    ul ub=1,lb=largest;
+    while (ub-lb!=-1 && ub-lb!=1 && ub-lb) {
+        
+        ul mpt=(ub+lb)/2;
+        // if lb works then move up
+        if (good(lb,ok,max,min,n)) {
+            lb=mpt;
         }
-        if (last<=max) {
-            cout << q << endl;
-            return 0;
+        else { // too high, move down
+            lb--;
         }
-        end:;
+        if (good(ub,ok,max,min,n)) {
+            // too low, move up
+            ub++;
+        }
+        else ub=mpt;
+        cout << "ub: " << ub << " lb: " << lb << endl;
     }
+    cout << ub << " " << lb << endl;
+    // for (ul q=largest;q;q--)  { // change to binary search essentially for log(n). put in function
+    //     unsigned long long last=min;
+    //     // use n-1 because you place one at the front no matter what
+    //     for (int i=1;i<n;i++) {
+    //         last+=q-1;
+    //         do {
+    //             if (last>=max) goto end;
+    //             last++;
+    //         }
+    //         while (!ok[last]);
+    //     }
+    //     if (last<=max) {
+    //         cout << q << endl;
+    //         return 0;
+    //     }
+    //     end:;
+    // }
 
 }
