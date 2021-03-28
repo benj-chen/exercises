@@ -19,7 +19,7 @@ def ans(l):
         c=sorted(l[:]) #add back the deleted item (restore for the next iteration)
     return res
 
-e=set(ans(list(input())))
+e=ans(list(input()))
 print(len(e))
 for x in sorted(e):
     print(x)
