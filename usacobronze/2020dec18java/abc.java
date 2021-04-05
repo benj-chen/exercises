@@ -1,29 +1,28 @@
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 public class abc {
-    private int max(int a, int b) {
-        if (a>b) return a;
-        return b;
+  public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    PrintWriter pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out)));
+    int n = Integer.parseInt(br.readLine());
+    int[] petals = new int[n];
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    for(int i = 0; i < n; i++) {
+      petals[i] = Integer.parseInt(st.nextToken());
     }
-    private int min(int a, int b) {
-        if (b<a) return b;
-        return a;
-    }
-    // private int[] lowest2(int[] inp) {
-        
-    //     return ;
-    // }
-    public static void main(String[] args) {
-        int inp;
-        int[] low2 = new int[2];
-        int highest=0;
-        Scanner s=new Scanner(System.in);
-        abc m=new abc();
-        for (int i=0;i<7;i++) {
-            int t=s.nextInt();
-            highest=m.max(highest,t);
+    int photos = 0;
+    for(int i = 0; i < n; i++) {
+      boolean[] present = new boolean[1001];
+      int petalsSeen = 0;
+      for(int j = i; j < n; j++) {
+        petalsSeen += petals[j];
+        present[petals[j]] = true;
+        if(petalsSeen % (j-i+1) == 0 && present[petalsSeen / (j-i+1)]) {
+          photos++;
         }
-        s.close();
-        int[] inp=new int[2];
-
+      }
     }
+    pw.println(photos);
+    pw.close();
+  }
 }
