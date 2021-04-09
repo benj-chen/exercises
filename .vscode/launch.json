@@ -36,7 +36,7 @@
             "name": "clang++ - Build and debug active file",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "program": "~/coding/exercises/xe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
