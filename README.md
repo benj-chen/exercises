@@ -15,3 +15,9 @@ The 'adventofcode2020' directory features solutions from daily problems from [ht
 
 ## CODEFORCES
 Mainly to serve as c++11 practice problems, I include a .md file with each problem to explain what I did. I'll update problems with better methods as I continue to learn c++. Executables may not work on non-Mac machines. For my own purposes I compiled programs to an executable called a.out instead of having executables for every single problem.
+
+## CODECHEF
+For practice, from the website [https://codechef.com](https://codechef.com). Similar to codeforces.
+
+## GOOGLE
+Problems from Google's Kickstart and Codejam competitions

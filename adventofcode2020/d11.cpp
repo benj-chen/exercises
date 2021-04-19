@@ -1,126 +1,91 @@
-#include <bits/stdc++.h>
+#include <utility>
+#include <vector>
+#include <fstream>
+#include <iostream>
+#define f first
+#define s second
 using namespace std;
-using st=string;
-vector<st> input(1);
-int l,w;
-void replace(st& s, int ind, char c) {
-    s=s.substr(0,ind) + string(1,c) + s.substr(ind+1,s.length());
+using pii = pair<pair<int,int>,char>;
+vector<string> inputs;
+int input_len, input_width;
+void get_input() {
+    ifstream input("i11");
+    string raw_input;
+    while (input >> raw_input) inputs.push_back(raw_input);
+    input_len = inputs.size();
+    input_width = inputs[0].length();
 }
-void reset(bool arr[]) {
-    for (int i=0;i<l;i++) {
-        for (int j=0;j<w;j++) {
-            arr[i][j]=0;
+void solve1() {
+    vector<pii> change(1);
+    while (!change.empty()) {
+        change.resize(0);
+        for (int i=0;i<input_len;i++) for (int j=0;j<input_width;j++) {
+            int ct = 0;
+            for (int a=i-1;a<i+2;a++) for (int b=j-1;b<j+2;b++) if ((a!=i||b!=j) && a>-1 && a<input_len && b>-1 && b<input_width
+                && inputs[a][b]=='#') {
+                ct++; // occupied adj seat
+            }
+            if (inputs[i][j]=='L') {
+                if (!ct/*ct==0*/) change.push_back(make_pair(make_pair(i,j),'#')); // change to
+            }
+            else if (inputs[i][j]=='#') {
+                if (ct>3) change.push_back(make_pair(make_pair(i,j),'L'));
+            }
+        }
+        for (pii p: change) {
+            inputs[p.f.f][p.f.s]=p.s;
         }
     }
+    int ct = 0;
+    for (string s: inputs) for (char c: s) if (c=='#') ct++;
+    // part 1 answer 2275
+    cout << ct << endl;
 }
-bool equals(bool arr1[], bool arr2[]) {
-    for (int i=0;i<l;i++) {
-        for (int j=0;j<w;j++) {
-            if ((*arr1)[i][j]!=(*arr2)[i][j]) return false;
-        }
-    }
-    return true;
-}
-int get_adj(int xloc, int yloc) {
-    int ct=0;
-    for (int x=-1;x<2;x++) for (int y=-1;y<2;y+=!x+1) if (input[xloc+x][yloc+y]=='#') ct++;
-    // the !x+1 is so that if it's 0, it won't create 0,0 which is just itself and instead skip to 1.
-    return ct;
-}
-int get_far(const int xloc, const int yloc) {
-    int ct=0,x=xloc,y=yloc;
-    if (xloc>0) {
-        while (x--) // check up
-            if (input[x][yloc]=='#') {
-                ct++;
-                cout << x << " " << yloc << endl;
-                break;
-            }
-    }            
-    if (xloc+1<l) {
-        for (x=xloc+1;x<l;x++) // check down
-            if (input[x][yloc]=='#') {
-                ct++;
-                cout << x << " " << yloc << endl;
-                break;
-            }
-    }            
 
-    if (yloc>0) {
-        while (y--) // check left
-            if (input[xloc][y]=='#') { ct++;
-            cout << xloc << " " << y << endl;
-            break;}
-    }
-    if (yloc<w-1) {
-        for (y=yloc+1;y<w;y++) // check right
-            if (input[xloc][y]=='#') {
-                ct++;
-                cout << xloc << " " << y << endl;
-                break;
+void solve2() {
+    vector<pii> change(1);
+    while (!change.empty()) {
+        change.resize(0);
+        for (int i=0;i<input_len;i++) for (int j=0;j<input_width;j++) {
+            int ct = 0;
+            for (int a=-1;a<2;a++) for (int b=-1;b<2;b++) if (a||b) {
+                // check each thing that's a x-units away and b y-units away
+                int mult = 1;
+                int newx = i+(mult*a), newy = j+(mult*b);
+                while (newx>-1 && newx<input_len && newy>-1 && newy<input_width) {
+                    if (inputs[newx][newy]=='.') {
+                        mult++;
+                        newx=i+(mult*a);newy=j+(mult*b);
+                    }
+                    else {
+                        if (inputs[newx][newy]=='#') ct++;
+                        break;
+                    }
+                }
             }
-    }            
-    return ct;
+            if (inputs[i][j]=='L') {
+                if (!ct/*ct==0*/) {
+                    change.push_back(make_pair(make_pair(i,j),'#'));
+                }
+            }
+            else if (inputs[i][j]=='#') {
+                if (ct>4) {
+                    change.push_back(make_pair(make_pair(i,j),'L'));
+                }
+            }
+        }
+        for (pii p: change) {
+            inputs[p.f.f][p.f.s]=p.s;
+        }
+    }
+    int ct = 0;
+    for (string s: inputs) for (char c: s) if (c=='#') ct++;
+    // part 2 answer 2121
+    cout << ct << endl;
 }
 int main() {
-    ifstream in("i11");
-    
-    in >> input[0];
-    w=input[0].length();
-    st raw_input;
-    while (in >> raw_input) input.push_back(raw_input);
-    l=input.size();
-    // x is the row number-1, y is the col number-1. l is the row number, w is the column number
-    // sol 1
-    bool mark[w][l];
-    bool prevmark[w][l];
-    while (1) {
-        reset(*mark);
-        for (int i=0;i<l;i++) {
-            
-            for (int j=0;j<w;j++) {
-                if (input[i][j]=='#') {
-                    // if 4 or more seats are filled, mark it
-                    if (get_adj(i,j)>3) {
-                        mark[i][j]=1;
-                    }
-                }
-                else if (input[i][j]=='L')
-                {
-                    // if 0 adjacent seats are filled, mark it
-                    if (!get_adj(i,j)) {
-                        mark[i][j]=1;
-                    }
-                }
-            }
-        }
-        if (equals(mark,prevmark)) {
-            for (int i=0;i<l;i++) {
-                for (int j=0;j<w;j++) {
-                    if (mark[i][j]) {
-                        replace(input[i],j,
-                        (input[i][j]=='#'? 'L' : '#'));
-                    }
-                }
-            }         
-            break;
-        }
-        for (int i=0;i<l;i++) {
-            for (int j=0;j<w;j++) {
-                // substitute prevmark with mark;
-                prevmark[i][j]=mark[i][j];
-                if (mark[i][j]) {
-                    replace(input[i],j,
-                    (input[i][j]=='#'? 'L' : '#'));
-                }
-            }
-        }
-
-
-    }
-    int sum=0;
-    for (st s: input) {
-        sum+=count(s.begin(),s.end(),'#');
-    }
-    cout << sum << endl;
+    get_input();
+    solve1();
+    inputs = {}; get_input(); // the input was modified
+    solve2();
 }
