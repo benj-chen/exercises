@@ -1,7 +1,17 @@
-from random import randint
-res=[]
-for x in range(100):
-    res.append(randint(0,3))
-print(res.count(0))
-print(res.count(1)+res.count(2))
-print(res.count(3))
+t = int(input())
+def factorial(n):
+    res=n
+    for i in range(1,n):
+        res=res*i
+    return res
+print(factorial(3))
+for test_case in range(t):
+    print ("Case #"+str(test_case+1)+": ", end="")
+    # get a,n,p
+    a,n,p=input().split(" ")
+    a=int(a)
+    n=int(n)
+    p=int(p)
+    print((a**factorial(n))%p)
+    # 5%3=2
+    # 4%1 = 0

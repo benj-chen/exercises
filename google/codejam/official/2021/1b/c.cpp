@@ -8,10 +8,11 @@ using pii = pair<int,int>;
 #define EACH(a,b) for (auto& a: b)
 #define vt vector
 #define vi vector<int>
-#define alg_type int // default is int, may be ll or my_class etc
+#define alg_type vi // default is int, may be ll or my_class etc
 #define alg_vec_type vt<alg_type>
 #define f first
 #define s second
 
 int main() {
+    
 }

@@ -7,29 +7,24 @@ using ull = unsigned long long;
 #define EACH(a,b) for (auto& a: b)
 #define vt vector
 #define vi vector<int>
-
-ull sumrange(ull st, ull end) {
-    assert (end>=st);
-    return (st+end)*(end-st+1)>>1;
-}
-bool isnt_prime(ull a) {
-    if (a==1) return true;
-    if (a==2) return false;
-    if (a%2==0) return true;
-    FOR(i,3,a) if (a%i==0) return true;
-    return false;
-}
-int main() {
-    // generate all the non-primes below two million, then subtract the sum of 1 to two million from that
-    // statistically a number is more likely to be composite than prime
-    ull total=sumrange(1,2000000);
-    ull total2=0;
-    FOR(i,1,2000001) {
-        if (isnt_prime(i)) {
-            total2+=i;
+ull sieve(int q) {
+    // find all the prime numbers under the int q, has to be in int range because vectors can't hold that large
+    // modded
+    vector<bool> prime;
+    prime.resize(q*q);
+    for (int i=2;i<q;i++) {
+        prime[i]=1;
+    }
+    ull res=0;
+    for (int i=2;i<q;i++) {
+        if (prime[i]) {
+            // start from i*i
+            for (ll j=i*i;j<q;j+=i) prime[j]=0;
+            res+=i;
         }
     }
-    cout << total-total2 << endl;
-    cout << total << endl;
-    cout << total2 << endl;
+    return res;
+}
+int main() {
+    cout << sieve(2e6) << endl;
 }

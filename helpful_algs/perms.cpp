@@ -53,7 +53,7 @@ vt<alg_vec_type> unique_perms(alg_vec_type& l) {
 }
 vt<alg_vec_type> unique_perms_unsorted(alg_vec_type& l) {
     if (l.empty()) return {{}};
-    set<alg_vec_type> res;
+    unordered_set<alg_vec_type> res;
     for (int i=0;i<l.size();i++) {
         int add_back=l[i];
         l.erase(l.begin()+i);
