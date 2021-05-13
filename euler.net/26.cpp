@@ -16,23 +16,9 @@ using pii = pair<int,int>;
 #define f first
 #define s second
 
-void solve() {
-    int n,k,p;
-    cin >> n >> k >> p;
-    vt<vi> stacks(n,vi(k));
-    FOR(i,0,n) {
-        cin >> stacks[i][0];
-        FOR(j,1,k){
-            cin >> stacks[i][j];
-            stacks[i][j]+=stacks[i][j-1];
-        }
-    }
-    
-
-}
 int main() {
-    int T;cin>>T;T++;FOR(t,1,T) {
-        cout << "Case #" << t << ": ";
-        solve();
+    ld ar[1000];
+    for (int i=1;i<1000;i++) {
+        ar[i]=1/(ld)i;
     }
 }

@@ -1,17 +1,26 @@
-t = int(input())
-def factorial(n):
-    res=n
-    for i in range(1,n):
-        res=res*i
-    return res
-print(factorial(3))
-for test_case in range(t):
-    print ("Case #"+str(test_case+1)+": ", end="")
-    # get a,n,p
-    a,n,p=input().split(" ")
-    a=int(a)
-    n=int(n)
-    p=int(p)
-    print((a**factorial(n))%p)
-    # 5%3=2
-    # 4%1 = 0
+tree = [
+    [1,2],
+    [],
+    [3,4],
+    [5],
+    [],
+    []
+]
+"""
+        0
+          \\
+       2    1
+    / /
+    3 4
+    |
+    5
+"""
+global result
+result = []
+def dfs(starting_node):
+    global result
+    result=result + tree[starting_node]
+    for i in tree[starting_node]:
+        dfs(i)
+dfs(0)
+print(result)
