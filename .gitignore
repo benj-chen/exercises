@@ -6,4 +6,8 @@ sandbox.java
 sandbox.py
 .vscode/
 .idea/
-in
+.DS_Store
+c++.txt
+c--.txt
+goog.txt
+func.txt

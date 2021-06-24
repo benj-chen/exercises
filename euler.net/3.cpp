@@ -1,10 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-using ll = long long;
-#define FOR(a) for (int i=0;i<a;i++)
-#define EACH(a,b) for (auto& a: b)
-#define vt vector
-#define pii pair<int,int>
+#defien FOR(a,b,c) for (int a=b;a<c;a++)
 using ul = unsigned long;
 ul big_number;
 priority_queue<ul> prime_factors;
@@ -36,7 +32,7 @@ void solve() {
         }
     }
 }
-int main() {
+int man() {
 
     // return 0;
     big_number=600851475143;
@@ -56,4 +52,19 @@ int main() {
     sort(begin(factors),end(factors));
     cout << factors.back() << endl;
 
+}
+
+int main() {
+    big_number=600851475143;
+    ul max;    
+    while (big_number!=0) {
+        FOR(i,2,big_number) {
+            if (big_number%i==0) {
+                big_number/=i;
+                max=i;
+                cout << i << endl;
+            }
+        }
+    }
+    cout << "answer: " << max << endl;
 }

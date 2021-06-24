@@ -10,7 +10,7 @@ using ull = unsigned long long;
 #define alg_type vi // default is int, may be ll or my_class etc
 #define alg_vec_type vt<alg_type>
 
-vector<string> split_delimeter_char(string s, char delim) {
+vector<string> split_delimiter_char(string s, char delim) {
     vector<string> res(1);
     for (char c: s) {
         if (c==delim) res.push_back("");
@@ -19,7 +19,7 @@ vector<string> split_delimeter_char(string s, char delim) {
     return res;
 }
 
-vector<string> split_delimeter_string(string s, string delim) {
+vector<string> split_delimiter_string(string s, string delim) {
     vector<string> res;
     const int dl = delim.length();
     for (int i=0;i<s.length()-dl && s.length()>dl;i++) {

@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ul = unsigned long;
+using ull = unsigned long long;
+using pii = pair<int,int>;
+#define FOR(a,st,b) for (int a=st;a<b;a++)
+#define EACH(a,b) for (auto& a: b)
+#define vt vector
+#define vi vector<int>
+#define alg_type vi // default is int, may be ll or my_class etc
+#define alg_vec_type vt<alg_type>
+#define f first
+#define s second
+ll sumrange(ll st, ll end) {
+    assert (end>=st);
+    return (st+end)*(end-st+1)>>1;
+}
+void solve()
+// {
+//     ll n;
+//     cin >> n;
+//     // why do people always want us to use prefix sums
+//     vt<ll> psum = {1};
+//     ll rt = n; // lower this later
+//     FOR(i,0,n) {
+//         psum.push_back(psum.back()+i);
+//     }
+//     for (ll i: psum) {
+//         cout << i << endl;
+//     }
+// }
+// {
+//     ll n;
+//     cin >> n;
+//     FOR(i,0,n) {
+//         ll res=i;
+//         while ()
+//     }
+// }
+{
+    ll n;
+    cin >> n;
+    
+}
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int T;cin>>T;T++;FOR(t,1,T) {
+        cout << "Case #" << t << ": ";
+        solve();
+    }
+}
