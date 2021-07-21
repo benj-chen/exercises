@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "ostream": "cpp"
+    },
+    "autoSnippet.snippets": [
+        { "pattern": "**/*.cpp", "snippet": "c++" }
+    ]
+}
