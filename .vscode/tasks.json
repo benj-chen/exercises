@@ -6,7 +6,7 @@
 		{
 			"type": "cppbuild",
 			"label": "C/C++: clang build active file",
-			"command": "clang++",
+			"command": "g++",
 			"args": [
 				"-std=c++17",
 				"-O2",
@@ -14,7 +14,7 @@
 				"-g",
 				"${file}",
 				"-o",
-				"~/coding/xe"
+				"~/xe"
 			],
 			"options": {
 				"cwd": "${fileDirname}"
@@ -22,11 +22,15 @@
 			"problemMatcher": [
 				"$gcc"
 			],
+			
 			"group": {
-				"kind": "build",
-				"isDefault": true
+				"kind": "build"
+				,"isDefault": true
 			},
-			"detail": "compiler: clang++"
+			"presentation": {
+				"reveal": "silent"
+			},
+			"detail": "compiler: g++"
 		}
     ]
 }
