@@ -1,10 +1,9 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-using vi = vector<int>;
 int main() {
     int i,score=0;
-    vi in;
+    vector<int> in;
     while (cin>>i)
         in.push_back(i);
     // compare index 0 to index 3, etc, because for groups A and B they have 2 numbers in common, so we don't care about them
@@ -12,4 +11,4 @@ int main() {
         if (in[ind]>in[ind-3])
             score++;
     cout<<score<<endl;
-}
+} 

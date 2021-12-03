@@ -11,8 +11,8 @@ int main() {
     while (cin>>in) {
         if (in>q.front()) // same idea as b main
             score++;
-        q.push(in);
         q.pop();
+        q.push(in);
     }
     cout<<score<<endl;
 }
