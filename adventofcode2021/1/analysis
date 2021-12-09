@@ -1,12 +1,17 @@
 Part a:
 
-First, setup so that the first number is considered the previous one when processing the second number (the while loop starts at the second number). If the current number is greater then add 1 to a count and make that number the new previous number.
+First, setup so that the first number is considered the previous one when processing the second number
+(the while loop starts at the second number). If the current number is greater then add 1 to a count
+and make that number the new previous number.
 
 Part b:
-Since group A and group B have the middle 2 numbers in common, they're not necessary to determining whether the sum of A is less than the sum of B. Thus you only need to compare the current one with the one 3 behind it. Visualization:
+Since group A and group B have the middle 2 numbers in common, they're not necessary to determining
+whether the sum of A is less than the sum of B. Thus you only need to compare the current one with
+the one 3 behind it. Visualization:
 
 in[0] + in[1] + in[2] < in[1] + in[2] + in[3]
 
 in[1] and in[2] appear on both sides, so they can be canceled.
 
-I used a queue in b_alt instead of a vector. Since the queue always has a size of 3, it theoretically saves memory. Not sure that there is a speed difference, but I wanted to apply queues.
+I used a queue in b_alt instead of a vector. Since the queue always has a size of 3, it theoretically
+saves memory. Not sure that there is a speed difference, but I wanted to apply queues.

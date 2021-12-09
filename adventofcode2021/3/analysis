@@ -1,7 +1,15 @@
 Part a: 
 
-I used an array to determine the most common index for each bit. If it was greater than 0 there were more 1s, etc. Then, noting that epsilon is just the reverse of gamma, I put in the bits one by one into the binary number. This is the only way that I'm familiar with but it performs fine.
+I used an array to determine the most common index for each bit. If it was greater than 0 there were
+more 1s, etc. Then, noting that epsilon is just the reverse of gamma, I put in the bits one by one
+into the binary number. This is the only way that I'm familiar with but it performs fine.
 
 Part b: the first hard one, but I liked my solution
 
-Figuring out o2 and co2 are very similar, but I first sorted the strings (which therefore sorts them in numerical order). The idea is that as you filter you narrow the answer's range, and sorting allows me to do this correctly. I found the point where the bit in question changed from 0 to 1 and compared it to the starting and ending indices of the range. By using my decide() function, which has a different setting when processing co2, I was able to process o2 and co2 in 1 function and update the start and end of the range correctly. Neat! This was like binary search, in that it narrowed down the range with each recursion, but did not necessarily half the range each time.
+Figuring out o2 and co2 are very similar, but I first sorted the strings (which therefore sorts them
+in numerical order). The idea is that as you filter you narrow the answer's range, and sorting
+allows me to do this correctly. I found the point where the bit in question changed from 0 to 1 and
+compared it to the starting and ending indices of the range. By using my decide() function, which
+has a different setting when processing co2, I was able to process o2 and co2 in 1 function and
+update the start and end of the range correctly. Neat! This was like binary search, in that it
+narrowed down the range with each recursion, but did not necessarily half the range each time.
