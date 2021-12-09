@@ -14,7 +14,7 @@
 				"-g",
 				"${file}",
 				"-o",
-				"~\\xe"
+				"~/xe"
 			],
 			"options": {
 				"cwd": "${fileDirname}"
