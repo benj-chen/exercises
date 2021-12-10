@@ -1,0 +1,13 @@
+Part a:
+
+Use OOP (not really necessary, since they don't really interact with each other, but I liked the
+idea) to abstract away each bingo board. Check if each board is complete every time you add a number
+by having a bool marker: 1 if it is marked, 0 otherwise. If the line along the newly added piece
+has a row or column with all 1s then it wins. In that case, sum up all the unmarked pieces and
+multiply.
+
+Part b:
+
+Really the same idea as part a, but now you need to go through each board until you have your last
+winning position. Do this by simulating and noting the result of each board. The last board's
+answer, which is what we want, will be stored and we can print that.
