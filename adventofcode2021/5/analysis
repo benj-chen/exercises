@@ -1,0 +1,21 @@
+Part a:
+See part b, which I did first. I added an if statement that checks if one of them has a difference
+of 0, in which case the starting and ending points share an x or y value. For me, it's better than
+a_orig in simplicity.
+
+Part a_orig:
+
+I just kept resizing the vector each time x or y was too large, since I didn't have a max x or y.
+This especially sucks when the y value differs because I have to resize x2-x1 times which is
+costly. However, between a and a_orig there doesn't seem to be any significant differences in
+performance. xm and ym are used for resizing.
+
+Part b:
+
+Have a change variable - the x value can go up OR down OR stay the same, so it doesn't suffice to
+have a while loop. Instead, we want to generalize: each iteration, we want the x value to get
+closer to the target x value and same for y. I accomplished this with dx, or "change in x", which
+is 1 if x<x2, -1 if x>x2 and 0 if x==x2 such that by adding dx to x we get closer to x2. Since
+diagonals are always 45 degrees, it can also be said that |x2-x| = |y2-y|. So, I have a diff
+variable that determines how many times to do this adding iteration. The change variable is also
+used here because I want to make sure diff is positive.

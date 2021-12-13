@@ -1,0 +1,101 @@
+a_orig.cpp
+
+g++ a_orig.cpp -std=c++17 -o2 -o a_orig.exe
+time ./a_orig.exe < input.txt
+5280
+
+real    0m0.030s
+user    0m0.016s
+sys     0m0.000s
+time ./a_orig.exe < input.txt
+5280
+
+real    0m0.029s
+user    0m0.016s
+sys     0m0.000s
+time ./a_orig.exe < input.txt
+5280
+
+real    0m0.030s
+user    0m0.031s
+sys     0m0.000s
+time ./a_orig.exe < input.txt
+5280
+
+real    0m0.035s
+user    0m0.016s
+sys     0m0.016s
+time ./a_orig.exe < input.txt
+5280
+
+real    0m0.033s
+user    0m0.000s
+sys     0m0.031s
+
+a.cpp
+
+g++ a.cpp -std=c++17 -o2 -o a.exe
+time ./a.exe < input.txt
+5280
+
+real    0m0.033s
+user    0m0.016s
+sys     0m0.016s
+time ./a.exe < input.txt
+5280
+
+real    0m0.035s
+user    0m0.016s
+sys     0m0.031s
+time ./a.exe < input.txt
+5280
+
+real    0m0.038s
+user    0m0.031s
+sys     0m0.000s
+time ./a.exe < input.txt
+5280
+
+real    0m0.037s
+user    0m0.031s
+sys     0m0.000s
+time ./a.exe < input.txt
+5280
+
+real    0m0.035s
+user    0m0.016s
+sys     0m0.031s
+
+b.cpp
+
+g++ b.cpp -std=c++17 -o2 -o b.exe
+time ./b.exe < input.txt
+16716
+
+real    0m0.036s
+user    0m0.031s
+sys     0m0.016s
+ime ./b.exe < input.txt
+16716
+
+real    0m0.040s
+user    0m0.031s
+sys     0m0.000s
+time ./b.exe < input.txt
+16716
+
+real    0m0.040s
+user    0m0.031s
+sys     0m0.016s
+time ./b.exe < input.txt
+16716
+
+real    0m0.035s
+user    0m0.031s
+sys     0m0.016s
+time ./b.exe < input.txt
+16716
+
+real    0m0.040s
+user    0m0.016s
+sys     0m0.016s
