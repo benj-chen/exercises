@@ -11,6 +11,7 @@ vi split_delimiter_char(string s, char delim) {
         if (c==delim) {res.push_back(stoi(cur_num)); cur_num = "";}
         else cur_num+=string(1,c);
     }
+    if (cur_num=="") res.push_back(stoi(cur_num));
     return res;
 }
 struct Board {

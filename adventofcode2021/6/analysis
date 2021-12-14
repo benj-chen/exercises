@@ -1,0 +1,3 @@
+I really liked my solution. Rather than having a vector and shifting everything around, I just
+fixed the 0 index at the next spot each time and followed the directions using mod. For part 2 I
+just changed the day amount.
