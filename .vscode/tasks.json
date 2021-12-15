@@ -27,9 +27,9 @@
 				"kind": "build"
 				,"isDefault": true
 			},
-			// "presentation": {
-			// 	"reveal": "silent"
-			// },
+			"presentation": {
+				"reveal": "silent"
+			},
 			"detail": "compiler: g++"
 		}
     ]

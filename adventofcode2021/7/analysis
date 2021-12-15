@@ -1,0 +1,14 @@
+Part a:
+
+The solution has to be one of the given numbers. Since the change is constant, nothing is gained
+from moving the solution between numbers, since it would raise the amount of distance on both sides
+of a sorted input. With this in mind, run through possible solution and find the lowest score.
+
+Part b:
+
+Same idea - the sample gave away the fact that the solution is not necessarily one of the included
+numbers. I think this is because now being in the middle of two numbers can be optimal because,
+compared to an existing number, it might be able to accomodate one side MORE than another side,
+making it the better solution (ie lessen one side by 5 but raise the other side by only 4). So,
+iterate from the lowest number to the highest number. sumrange() is from some programs I've made
+before (ie usaco's "race" problem).

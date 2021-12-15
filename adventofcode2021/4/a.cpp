@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <string>
 #include <utility>
@@ -47,6 +48,7 @@ struct Board {
     }
 };
 int main() {
+    ifstream cin("/mnt/c/Users/benjc/exercises/adventofcode2021/4/input.txt");
     // get drawn numbers input
     string s; cin >> s; // in the input there are no spaces between commas
     vi draw = split_delimiter_char(s,',');
