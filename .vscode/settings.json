@@ -77,5 +77,6 @@
     },
     "autoSnippet.snippets": [
         { "pattern": "**/*.cpp", "snippet": "default comp snippet" }
-    ]
+    ],
+    "C_Cpp.errorSquiggles": "Disabled"
 }

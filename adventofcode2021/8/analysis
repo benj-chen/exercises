@@ -1,0 +1,15 @@
+Part a:
+
+Since we're only considering the stuff behind the delimiter, we just cin on s because we don't care
+about it. Then we cin for the remaining 4 in that line and determine if its size is 2,3,4, or 7.
+
+Part b:
+
+Though I could have kept everything in the main function, I decided this would be cleaner. I first
+found 2,3,4, and 7 and stored them in my answer key vector. Then, I did the rest by size. First I
+did numbers with size 6: 0,6,9. If it didn't contain the right two lines then it was 6, else if it
+contains the lines from 4 then it was 9, etc. I made a contains() function that utilizes the fact
+that all of the numbers are sorted. contains(a,b) returns true if all letters in b are in a.
+Similar story for size 5: 2,3,5. I want to do both of them in the same for loop but that doesn't
+seem possible without modifying the contains() function which would slow things down
+significantly.
