@@ -1,0 +1,4 @@
+Use a stack to find what should be the correct closing character - whatever the most recent opening
+character was. Every time you do this, pop the stack. Really good solution using the right tool.
+This carried over into part b well too, since I just needed to read each entry from the stack and
+parse it.
