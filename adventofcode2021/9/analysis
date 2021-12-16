@@ -1,0 +1,16 @@
+Part a:
+
+Basically for each spot check the number above adj to it. Since each point must be less than the
+current point for it to count, we have to exclude the case where k=0 and l=0. I could have used
+k||l but felt it was a little unclear. Though it does check diagonally, it works and using k==0 ||
+l==0 doesn't work. Since everything is char we have to subtract the char value of 0 from the
+character.
+
+Part b:
+
+I could have used chars here as well but during the solve reverted to vector<int> because I could
+debug better. I could change it back but I don't think the memory performance hit is very big. I
+used dfs to find how many spots were in one patch by, again, moving up, down, left and right. The
+indices had to be within range, the value has to not have been visited already (to prevent an
+infinite loop), and the value can't be 9. Each time you encounter a place that meets these criteria
+add it to sz. I used a priority queue to get the three biggest values.
