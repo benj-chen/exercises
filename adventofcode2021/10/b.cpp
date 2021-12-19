@@ -18,9 +18,9 @@ int main() {
         {'>', '<'}
     };
     string s;
-    vector<long long> scor;
+    vector<int> scor;
     while (cin>>s) {
-        long long score = 0;
+        int score = 0;
         stack<int> q;
         for (char c: s) {
             switch(c) {
@@ -46,5 +46,5 @@ int main() {
         end:;
     }
     sort(scor.begin(),scor.end());
-    cout<<endl<< scor[scor.size()/2]<<endl;
+    cout<<scor[scor.size()/2]<<endl;
 }
