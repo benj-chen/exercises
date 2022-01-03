@@ -29,17 +29,42 @@ using pll = pair<ll,ll>;
 template <typename T>
 std::ostream& operator<<(std::ostream& out, const std::vector<T>& v){if(!v.empty())out<<v.front();for(int i=1;i<v.size();i++)out<<' '<<v[i];return out;}
 
-vector<string> split_delimiter_char(string s, char delim) {
-    vector<string> res(1);
-    for (char c: s) {
-        if (c==delim) res.push_back("");
-        else res.back()+=string(1,c);
-    }
-    return res;
-}
-
-map<string,vector<string> > graph;
-
 int main() {
+    map<string,vector<string>> adj;
+    map<string, bool> vis;
+    string s,t;
+    vector<string> st,end;
+    while(cin>>s>>t) {
+        
+        if (s=="start") {
+            st.push_back(t);
+        }
+        else if (s=="end")
+        {
+            end.push_back(t);
+        }
+        else {
+            if ('a'<=s[0] && s[0]<='z') {
+                vis[s]=0;
+            }
+            adj[s].push_back(t);
+            adj[t].push_back(s);
+        }
+        if (t=="start") {
+            st.push_back(s);
+        }
+        else if (t=="end")
+        {
+            end.push_back(s);
+        }
+        else {
+            if ('a'<=t[0] && t[0]<='z') {
+                vis[t]=0;
+            }
+            adj[s].push_back(t);
+            adj[t].push_back(s);
+        }
+    }
+    // find all paths that don't backtrack
 
 }
