@@ -1,0 +1,17 @@
+Pretty cool problem, and much easier than day 12. Still haven't solved it at the time of writing and
+am probably not going to until I look at this file and/or browse this year's folder.
+
+Part a:
+For each fold, if the x or y value of each thing (depending on the input) is over the specified
+number, reflect it across that line, if you think about it from middle school geometry. Do this by
+taking the difference, inverting it, and adding it to the specified number. The logic is that
+without inverting it, it would obviously return the original number, so by inverting it you reflect
+it. Then, transform it into a set to get rid of duplicate values. I couldn't think of a quicker /
+less memory-killing solution - a custom made function would do just as bad.
+
+Part b:
+To visualize, take each thing in the graph and apply it to a graph of the max x and the max y. In my
+case, there were 162 duplicates. Not sure if making a set out of a ~700 sized graph is slower than
+going through the assigning for loop 162 times, but I think the latter is faster and definitely
+doesn't use as much memory. Sadly, I have no idea how to do even a primitive OCR, and even then it
+would be really slow.
