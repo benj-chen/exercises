@@ -24,7 +24,7 @@ int main() {
         }
         cin.ignore();//newline
     }
-    for (int t=0;true;t++) {
+    for (int t=1;true;t++) {
         for (int i=0;i<10;i++) for (int j=0;j<10;j++) {
             grid[i][j]++;
             if (grid[i][j]>9) flash(i,j, true);
@@ -32,7 +32,7 @@ int main() {
         bool all = 1;
         for (int i=0;i<10;i++) for (int j=0;j<10;j++){ if(grid[i][j]>9) {grid[i][j]=0;ct++;} else {all=0;}}
         if (all) {
-            cout << t+1 << endl;
+            cout << t << endl;
             break;
         }
     }

@@ -1,1 +1,13 @@
-will write analysis and clean up code later
+Part a:
+
+The main thing here is flash. I have a bool orig that is true if the function call is for a cell
+that flashed "naturally", that is, flashed because of the cycle causing it to go up only, which is
+obviously true at the original function call point and false otherwise. The double for loop produces
+i and j such that at least one is non-zero. I also note that if the spot that I'm testing is 10 then
+it has not officially flashed yet, and will flash right after; if it is over 10 it has already
+flashed and we shouldn't flash again.
+
+Part b:
+
+Just do what you did before, but modify the thing that counts the number of times. Start at 1
+because after the loop it will have been t times.
