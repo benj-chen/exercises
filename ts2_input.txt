@@ -1,1 +1,21 @@
-#include <bits/stdc++.h>
+* - RED
+# - YELLOW
+O - GREEN
+
+16X12
+   *****
+  *********
+  OOo##O#
+ O#OO###o##
+ O#OO###O###
+ OO####OOOO
+   #######
+  OO*OOO
+ OOO*OO*OOO
+OOOO****OOOO
+##O*##**#*O##
+###** 
+##***
+  ***
+ OOO
+OOOO
