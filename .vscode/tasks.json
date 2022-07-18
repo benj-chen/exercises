@@ -1,20 +1,16 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
-    "version": "2.0.0",
-    "tasks": [
+	"version": "2.0.0",
+	"tasks": [
 		{
 			"type": "cppbuild",
-			"label": "C/C++: clang build active file",
-			"command": "g++",
+			"label": "C/C++: g++.exe build active file",
+			"command": "C:\\msys64\\mingw64\\bin\\g++.exe",
 			"args": [
-				"-std=c++17",
-				"-O2",
-				"-lm",
+				"-fdiagnostics-color=always",
 				"-g",
 				"${file}",
 				"-o",
-				"~/xe"
+				"~\\run"
 			],
 			"options": {
 				"cwd": "${fileDirname}"
@@ -22,15 +18,11 @@
 			"problemMatcher": [
 				"$gcc"
 			],
-			
 			"group": {
-				"kind": "build"
-				,"isDefault": true
+				"kind": "build",
+				"isDefault": true
 			},
-			"presentation": {
-				"reveal": "silent"
-			},
-			"detail": "compiler: g++"
+			"detail": "compiler: C:\\msys64\\mingw64\\bin\\g++.exe"
 		}
-    ]
+	]
 }
