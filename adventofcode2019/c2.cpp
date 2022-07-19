@@ -47,13 +47,7 @@ bool intersect(const line& l1, const line& l2) {
         return in_range(f,h,d) and in_range(a,c,e);
     return in_range(b,d,h) and in_range(e,g,a);
 }
-void test_intersect() {
-    int a,b,c,d,e,f,g,h;
-    cin >> a >> b >> c >> d >> e >> f >> g >> h;
-    line l1 = {{a,b},{c,d}},
-    l2 = {{e,f},{g,h}};
-    cout << intersect(l1,l2) << endl;
-}
+
 int main() {
     string in1,in2;
     getline(cin,in1); getline(cin,in2);
@@ -65,19 +59,55 @@ int main() {
     for (string s: _one) {
         one.push_back({one.back().second /* previous spot*/,make_co(s,one.back().second)});
     }
-    vector<int> res;
     one.erase(one.begin());
-
-    for (string s: _two) {
+    vector<vector<int>> res; // index 1, index 2, x, y
+    for (int i=0;i<_two.size();i++) {
         ln.first = ln.second;
-        ln.second = make_co(s,ln.second);
-        for (line l: one) {
-            if (intersect(l,ln)) {
-                res.push_back(abs((l.first.first == l.second.first? l.first.first:l.first.second)) + abs((ln.first.first == ln.second.first? ln.first.first: ln.first.second)));
-                
+        ln.second = make_co(_two[i],ln.second);
+        for (int j=0;j<one.size();j++) {
+            if (intersect(one[j],ln)) {
+                res.push_back({
+                    i,j,
+                    ln.first.first,ln.first.second,ln.second.first,ln.second.second,
+                    one[j].first.first,one[j].first.second,one[j].second.first,one[j].second.second,
+                });
+
             }
         }
     }
-    for (int i: res) cout << i << endl;
+
+    for (vector<int> i: res) {
+        int sum = 0;
+        for (int j=0;j<i[1];j++) {
+
+            sum+=stoi(_one[j].substr(1));
+        }
+        for (int j=0;j<i[0];j++) {
+
+            sum+=stoi(_two[j].substr(1));
+        }
+        // dist
+        co pt = {(i[2] == i[4]? /* y vals different*/ i[2] : i[6]),
+        (i[3] == i[5]? i[3]: i[7])};
+        
+        switch(_one[i[1]][0]) {
+            case 'L': case 'R':
+            // horiz
+            sum += abs(i[6]-pt.first);break;
+            case 'U': case 'D':
+            // vert
+            sum += abs(i[7]-pt.second);break;
+        }
+        switch(_two[i[0]][0]) {
+            case 'L': case 'R':
+            // horiz
+            sum += abs(i[2]-pt.first);break;
+            case 'U': case 'D':
+            // vert
+            sum += abs(i[3]-pt.second);break;
+        }
+      
+        cout << sum << endl;
+    }
 
 }

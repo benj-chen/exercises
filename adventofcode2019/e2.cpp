@@ -1,7 +1,6 @@
 #include<vector>
 #include<map>
 #include<iostream>
-#include<string>
 using namespace std;
 
 vector<int> split_delimiter_char(string s, char delim) {
@@ -22,7 +21,11 @@ map<int,int> p_szs {
     {2,3},
     {99,0},
     {3,1},
-    {4,1}
+    {4,1},
+    {5,2},
+    {6,2},
+    {7,3},
+    {8,3}
 };
 vector<int> v;
 int loc(bool is_immediate, int num) {
@@ -49,28 +52,42 @@ int main(){
             mode.push_back(b);
         }
         mode.resize(p_szs[opcode]);
+        bool no_change = true;
         switch(opcode) {
             case 1:
-            v[v[i+3]] = loc(mode[0],v[i+1]) + loc(mode[1],v[i+2]);
+                v[v[i+3]] = loc(mode[0],v[i+1]) + loc(mode[1],v[i+2]);
             break;
             case 2:
-
-            v[v[i+3]] = loc(mode[0],v[i+1]) * loc(mode[1],v[i+2]);
+                v[v[i+3]] = loc(mode[0],v[i+1]) * loc(mode[1],v[i+2]);
             break;
             case 3:
-            // guaranteed to not be immediate
-            cout << "expecting input: ";
-            cin >> v[v[i+1]];
+                cout << "expecting input: ";
+                cin >> v[v[i+1]];
             break;
             case 4:
-            cout << "output: " << loc(mode[0],v[i+1])<< endl;
+                cout << "output: " << loc(mode[0],v[i+1])<< endl;
             break;
             case 99:
-            cout << "done" << endl;
+                cout << "done" << endl;
             return 0;
-            
+            case 5:
+                if (loc(mode[0],v[i+1]) != 0) {
+                    i = loc(mode[1],v[i+2]);
+                    no_change = false;
+                }
+            break;
+            case 6:
+                if (loc(mode[0],v[i+1]) == 0) {
+                    i = loc(mode[1],v[i+2]);
+                    no_change = false;
+                }
+            break;
+            case 7:
+                v[v[i+3]] = ((loc(mode[0],v[i+1]) < loc(mode[1],v[i+2])));
+            break;
+            case 8:
+                v[v[i+3]] = ((loc(mode[0],v[i+1]) == loc(mode[1],v[i+2])));
         }
-        i+=p_szs[opcode]+1;
+        if (no_change) i+=p_szs[opcode]+1;
     }
-    for (int i: v) cout << i << " "; cout << endl;
 }
