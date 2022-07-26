@@ -2,9 +2,9 @@
 #include<map>
 #include<iostream>
 using namespace std;
-
-vector<int> split_delimiter_char(string s, char delim) {
-    vector<int> res;
+using ll = long long;
+vector<ll> split_delimiter_char(string s, char delim) {
+    vector<ll> res;
     string temp;
     for (char c: s) {
         if (c==delim) {
@@ -16,7 +16,7 @@ vector<int> split_delimiter_char(string s, char delim) {
     if (temp!="") res.push_back(stoi(temp));
     return res;
 }
-map<int,int> p_szs {
+map<ll,ll> p_szs {
     {1,3},
     {2,3},
     {99,0},
@@ -27,8 +27,8 @@ map<int,int> p_szs {
     {7,3},
     {8,3}
 };
-vector<int> v;
-int loc(bool is_immediate, int num) {
+vector<ll> v;
+ll loc(bool is_immediate, ll num) {
 
     if (is_immediate) {
         return num;
@@ -41,10 +41,10 @@ int main(){
     getline(cin,intcode);
 
     v = split_delimiter_char(intcode,',');
-    for (int i=0;i<v.size();) {
+    for (ll i=0;i<v.size();) {
         // opcode processing
-        int cmd = v[i];
-        int opcode = cmd % 100; cmd /= 100;
+        ll cmd = v[i];
+        ll opcode = cmd % 100; cmd /= 100;
         vector<bool> mode;
         while (cmd) {
             bool b = cmd % 10;
