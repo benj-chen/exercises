@@ -10,7 +10,7 @@ map<ll,ll> split_delimiter_char(string s, char delim) {
     string temp;
     for (char c: s) {
         if (c==delim) {
-            res[ct++]=stoi(temp);
+            res[ct++]=stoll(temp);
             temp = "";
         }
         else temp+=c;
