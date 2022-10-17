@@ -79,5 +79,40 @@ bool is_prime(int n) {
     for (int i=3;i<=s;i+=2) if (!(n%i)) return false;
     return true;
 }
+int lcm(int a, int b) {
+    auto fact = [](int n){
+        map<int,int> res;
+        // import sieve with this
+        int prod=1;
+    vi f = sieve(n);
+    start:;
+    for (int i: f) {
+        if (!(n%i)) {
+            n/=i;
+            res[i]++;
+            goto start;
+        }
+    }
+    return res;
+    };
+    
+    map<int,int> pfa = fact(a), pfb = fact(b);
+    for (pair<int,int> i: pfa) {
+        pfb[i.first] = fmax(pfb[i.first],i.second);
+    }
+    int res = 1;
+    for (pair<int,int> i: pfb) {
+        for (int j=0;j<i.second;j++) res*=i.first;
+        cout << res << endl;
+        cout << i.first << " "<<i.second << endl;
+    }
+    return res;
+}
 int main() {
+    cout << lcm(60,72) << endl;
+    auto i = prime_factors(60);
+    auto j = prime_factors(72);
+    for (int k: i) cout << k << endl;
+    cout << endl;
+    for (int k: j) cout << k << endl;
 }

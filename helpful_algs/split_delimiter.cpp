@@ -14,7 +14,7 @@ vector<string> split_delimiter_char(string s, char delim) {
     vector<string> res(1);
     for (char c: s) {
         if (c==delim) res.push_back("");
-        else res.back()+=string(1,c);
+        else res.back()+=c;
     }
     return res;
 }

@@ -1,0 +1,105 @@
+#include<bits/stdc++.h>
+using namespace std;
+map<char,int> dir {
+    {'N',0},
+    {'E',1},
+    {'S',2},
+    {'W',3}
+};
+map<int,int> dir2 {
+	{0,0},
+		{2,0},
+		{1,1},
+		{3,1}};
+struct arrow {
+    int x,y, di, length=0;
+    // di: 0 = n; 1 = e; 2=s;3=w;
+        arrow(int x,int y, int di): x(x), y(y), di(di) {}
+    
+};
+
+bool does_overlap(const arrow& a, const arrow& b) {
+	// x
+	// short on long DNE
+	// long on short
+	bool cond1, cond2;
+	// chekc 1: x overlap?
+	if (a.di == b.di) {
+		int same,diff1,diff2,diff3,diff4;
+		// normalize
+		if (a.di) {
+			// l/r
+			if (a.y!=b.y) return false;
+			same = a.y;
+			diff1 = a.x;
+			diff2 = a.x+length;
+			diff3 = b.x;
+			diff4 = b.x+length;
+		}
+		else {
+			// u/d
+			if (a.x!=b.x) return false;
+			same = a.x;
+			diff1 = a.y;
+			diff2 = a.y+length;
+			diff3 = b.y;
+			diff4 = b.y+length;
+			
+		}
+		// overlap
+		
+	}
+}
+
+int main() {
+int T;cin>>T;T++;for(int t=1;t<T;t++) {
+    int n,r,c,sr,sc;
+    cin >> n >> r >> c >>
+    sr >> sc;
+    string di; cin >> di;
+    vector<arrow> lines;
+    // initial line
+    arrow init(sr,sc,dir[di[0]]);
+    // length
+    int ind = 0;
+    while (di[ind]==di[0]) ind++;
+    // di[ind] != di[0]
+    init.length = ind;
+    lines.push_back(init);
+    while (ind<n) {
+	char init_dir = di[ind];
+	int sz =  0;
+	while (di[ind] == init_dir) {
+		ind++;
+		sz++;
+	}
+	arrow a(0,0,dir2[dir[init_dir]]);
+	a.length = sz * (dir[init_dir] > 1? -1: 1);
+	lines.push_back(a);
+    }
+    for (int i=1;i<lines.size();i++) {
+	    // upd init loc
+	    int x1,y1,x2,y2;
+	    if (lines[i-1].di) {
+		    // odd: horiz
+		    lines[i].x = lines[i-1].x+length;
+		    lines[i].y = lines[i-1].y;
+		    x1 = lines[i].x; x2 = lines[i].x+lines[i].length;
+	    }
+	    else {
+		    // even
+		    lines[i].y = lines[i-1].y+length;
+		    lines[i].x = lines[i-1].x;
+		    y1 = lines[i].y; y2 = lines[i].y+lines[i].length;
+		    x1 = lines[i].x; x2 = x1;
+	    }
+	    // upd length
+	    
+    }
+    // cout << "arrows: " << endl;
+    // for (auto i: lines) {
+	    // cout << i.x << " " << i.y << " " << i.di << " " << i.length << endl;
+    // }
+
+}
+}

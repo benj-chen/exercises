@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+#define f(n) for(int i=0;i<n;i++)
+// print vectors with space delimiter
+template <typename T>
+std::ostream& operator<<(std::ostream& out, const std::vector<T>& v){if(!v.empty())out<<v.front();for(int i=1;i<v.size();i++)out<<' '<<v[i];return out;}
+using namespace std;
+struct stype {
+    int q,l,v;
+    stype(int q, int l, int v): q(q), l(l), v(v) {}
+    operator<(stype other) {
+        return this->l < other.l;
+    }
+};
+bool cust_comp(stype a, stype b) {
+    // comp by quality
+    return 0;
+}
+int main() {int T; cin >> T;T++;for(int t=1;t<T;t++) {
+    int d,n,x; cin >> d >> n >> x;
+    vector<stype> seeds;
+    f(n) {
+        int q,l,v; cin >> q >> l >> v;
+        seeds.push_back(stype(q,l,v));
+    }
+    sort(seeds.begin(),seeds.end());
+    deque<int> intervals = {0}; 
+    for (stype i: seeds) {
+        // collect interval lengths
+        intervals.push_back(i.l-intervals.back());
+    }
+    for (int i=n-1;i>-1;i--) {
+        if (intervals[i] == 0) intervals.erase(intervals.begin()+i);
+    }
+    // quickest growing is first
+    int days_used = 0, upto = 0; // upto, which changes with each while iteration, represents the possible types of seeds to choose from.
+    auto upd = [&]() {
+        if (upto >= n) return n+1; // finish
+        // work up until the initial upto and the current upto l value differ
+        int initl = seeds[upto].l;
+        while (seeds[++upto].l == initl) {}
+        return upto;
+    };
+    while (days_used <= x and upd() <= n) {
+        int days = intervals.front();
+        intervals.pop_front();
+        break;
+    }
+}
+}
