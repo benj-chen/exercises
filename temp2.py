@@ -4,7 +4,6 @@
 # what the sum of the list from indices I to J is
 # in problems with queries, you may need to modify the input
 # in the beginning for faster processing across all queries
-
 # for this sample problem and for the palin problem we need to modify
 # the input
 
