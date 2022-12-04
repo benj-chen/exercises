@@ -23,7 +23,9 @@ int main() {
 		b = {stoi(b1[0]),stoi(b1[1])};
 		if( 
 			(a.first <= b.first and a.second >= b.second) or
-			(b.first <= a.first and b.second >= a.second)
+			(b.first <= a.first and b.second >= a.second) or 
+			(a.first <= b.first and b.first <= a.second) or 
+			(b.first <= a.first and a.first <= b.second)
 		  ) {
 			cout << "*";
 			count++;
