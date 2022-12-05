@@ -4,6 +4,7 @@ using namespace std;
 int main() {
 	string s;
 	int cur = 0, max = 0;
+		
 	while (getline(cin,s)) {
 		if (s=="") {
 			max = fmax(cur,max);
@@ -13,5 +14,6 @@ int main() {
 			cur += stoi(s);
 		}
 	}
+
 	cout << max << endl;
 }

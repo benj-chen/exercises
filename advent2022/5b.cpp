@@ -1,8 +1,9 @@
 #include<iostream>
 #include<cmath>
 #include<vector>
-#include<deque>
+#include<stack>
 using namespace std;
+
 vector<string> split_delimiter_char(string s, char delim) {
     vector<string> res(1);
     for (char c: s) {
@@ -13,39 +14,43 @@ vector<string> split_delimiter_char(string s, char delim) {
 }
 int main() {
 	string s;
-	vector<deque<char>> crates;
-	bool first_time = 1;
+	vector<stack<char>> crates;
+	stack<string> cr_build;
 	while (getline(cin,s)) {
 		if (s == "") break;
-		cout << "'" << s << "'" << endl;
-		// process 4 chars at a time. note that there is no trailing space
-		if (first_time) crates.resize((s.size()+1)/4);
-		
-		for (int i=0;i<s.size();i+=4) {
-			if (s[i]=='[') {
-				crates[i/4].push_back(s[i+1]);
+		cr_build.push(s);
+	}
+
+	crates.resize((cr_build.top().size()+1)/4);
+	cr_build.pop(); // 1 2 3...
+	while (!cr_build.empty()) {
+		// process 4 chars at a time. note that there is no extra
+		for (int i=0;i<cr_build.top().size();i+=4) {
+			if (cr_build.top()[i]=='[') {
+				crates[i/4].push(cr_build.top()[i+1]);
 			}
 		}
-		first_time = 0;
+		cr_build.pop();
 	}
-	cout << "ok" << endl;
+
+
 	// process queries
 	while (getline(cin,s)) {
 		auto v = split_delimiter_char(s,' ');
 		int n = stoi(v[1]), fr = stoi(v[3]), to = stoi(v[5]);
-		cout << n << fr << to << endl;
-		deque<char> temp;
+		stack<char> temp;
 		for (int i=0;i<n;i++) {
-			temp.push_back(crates[fr-1].front());
-			crates[fr-1].pop_front();
+			temp.push(crates[fr-1].top());
+			crates[fr-1].pop();
 		}
 		for (int i=0;i<n;i++) {
-			crates[to-1].push_front(temp.back());
-			temp.pop_back();
+			crates[to-1].push(temp.top());
+			temp.pop();
 		}
-	for (deque<char> d: crates) {
-		cout << d.front();
 	}
+
+	for (stack<char> d: crates) {
+		cout << d.top();
 	}
 	cout << endl;
 }
