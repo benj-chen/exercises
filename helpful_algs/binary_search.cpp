@@ -14,7 +14,7 @@ int binary_search_up(alg_vec_type& v, alg_type i, int l, int r) {
     if (r > l) {
         int mid = l + (r - l) / 2;
         if (v[mid] == i)
-            return mid+1;// snap up
+            return mid;
         if (v[mid] > i)
             return binary_search_up(v, i, l, mid - 1);
         return binary_search_up(v, i, mid + 1, r);
