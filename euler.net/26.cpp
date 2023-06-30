@@ -1,10 +1,11 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+
 using namespace std;
 using ll = long long;
 using ul = unsigned long;
 using ld = long double;
 using ull = unsigned long long;
-using pii = pair<int,int>;
 #define FOR(a,st,b) for (int a=st;a<b;a++)
 #define EACH(a,b) for (auto& a: b)
 #define vt vector
@@ -19,6 +20,6 @@ using pii = pair<int,int>;
 int main() {
     ld ar[1000];
     for (int i=1;i<1000;i++) {
-        ar[i]=1/(ld)i;
+        ar[i]=1.0/i;
     }
 }
