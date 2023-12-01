@@ -1,8 +1,25 @@
-// I was goofy and didn't realize that all it asked was that the remaining chars can be rearranged. this would work assuming that you couldn't
 #include<iostream>
-#include<vector>
+#include<map>
+#include<utility>
 using namespace std;
 
+int main() {int t; cin>>t; while(t--) {
+	int n,k; string s; cin>>n>>k>>s;
+	// sum pop of each and compare parity to k
+	// allow exactly one to be odd
+	map<char,int> pop;
+	for (char c: s) pop[c]++;
+	cout << "for " << s << ": ";
+	// burn 2s at a time as long as they're avail
+	for (pair<char,int> letter: pop) {
+		if (letter.second%2){k--; cout << letter.first;}
+	}
+	cout<<endl<<( k==0 or k==-1? "YES": "NO")<<k << endl;
+}}
+
+
+// I was goofy and didn't realize that all it asked was that the remaining chars can be rearranged. this would work assuming that you couldn't
+/*
 int main() { int t;cin>>t;while(t--) {
 	int N,K; string s;cin>>N>>K>>s;
 	// dp: at any point if the front and back are diff, must remove one
@@ -29,3 +46,4 @@ int main() { int t;cin>>t;while(t--) {
 	}
 	cout << "for " << s << ": " <<(dp[N][0][K] ? "YES":"NO") << endl;
 }}
+*/
